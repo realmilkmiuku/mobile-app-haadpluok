@@ -29,6 +29,7 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
 
         iv_camera.setOnClickListener(this)
 
+        //add
 
     }
 
