@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.TaskFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/bar_marginTop"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="3"
+                android:layout_marginStart="@dimen/margin20"
+                android:layout_marginEnd="@dimen/margin20"
+                >
+
+                <com.kmitl.mythesis.utils.HPTextSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+
+                    android:text="@string/title_task"
+                    android:textSize="@dimen/titlebar_textSize"
+                    android:textColor="@color/black"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/ic_add"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_add"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_marginTopDown"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rowCount="4"
+                    android:orientation="vertical">
+
+                    <com.kmitl.mythesis.utils.HPTextSemiBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="Task_name"
+                        android:textSize="@dimen/title_textSize"
+                        android:textColor="@android:color/black"/>
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="User_ves_name"
+                        android:textSize="@dimen/content_textSize"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.kmitl.mythesis.utils.HPTextRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="Task_time"
+                            android:textSize="@dimen/content_textSize"
+                            android:textColor="@color/black"/>
+
+                        <View
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
+
+                            android:layout_width="0.75dp"
+                            android:layout_height="12dp"
+                            android:background="@android:color/darker_gray"/>
+
+                        <com.kmitl.mythesis.utils.HPButton
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_margin="2dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/bg_circle"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:gravity="center"
+                            android:minHeight="0dp"
+                            android:minWidth="0dp"
+                            android:text="ศ."
+                            android:textSize="9dp"
+                            android:textColor="@color/white"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:background="@drawable/bg_task_type"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingHorizontal="5dp"
+                        android:paddingTop="2dp">
+
+                        <com.kmitl.mythesis.utils.HPTextRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Task_type"
+                            android:textColor="@color/black"
+                            android:textSize="10dp"
+                            android:paddingTop="1dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <RadioGroup
+                    android:id="@+id/rg_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end">
+
+                    <com.kmitl.mythesis.utils.HPRadioButton
+                        android:id="@+id/rd_task_check"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:checked="false"
+                        android:button="@drawable/custom_radiobutton" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <!-- boundary line between task -->
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0.75dp"
+                android:background="@color/grey"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

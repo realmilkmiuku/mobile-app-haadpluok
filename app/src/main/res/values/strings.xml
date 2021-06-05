@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name">หัดปลูก</string>
+
+    <!--String  Login-->
+    <string name="label_login">เข้าสู่ระบบไปปลูกผักกันเถอะ ~</string>
+    <string name="btnLogin_text">เข้าสู่ระบบ</string>
+    <string name="hint_email_id_text"> Email </string>
+    <string name="hint_password_id_text">รหัสผ่าน</string>
+    <string name="hyperlinkRegister_text">ลงทะเบียนที่นี่</string>
+    <string name="label_dont_have_acc">ยังไม่มีบัญชี?</string>
+    <string name="hyperlinkForgetPassword_text">ลืมรหัสผ่าน</string>
+
+    <!--String  Forgotpassword-->
+    <string name="title_forgotpassword">ลืมรหัสผ่าน?</string>
+    <string name="label_forgotpassword">ระบุ E - mail ของคุณที่ใช้ลงทะเบียน</string>
+    <string name="label_forgotpassword2">เพื่อที่เราจะส่ง E - mail การรีเซ็ตรหัสผ่านใหม่</string>
+    <string name="btnSummit_text">ยืนยัน</string>
+
+    <!--String  Register-->
+    <string name="label_regis">สร้างบัญชีหัดปลูก~</string>
+    <string name="btnRegis_text">ลงทะเบียน</string>
+    <string name="hint_regis_username_text"> ชื่อบัญชีผู้ใช้ </string>
+    <string name="hint_regis_email_id_text"> Email </string>
+    <string name="hint_regis_password_id_text">รหัสผ่าน</string>
+    <string name="hint_regis_confirm_password_id_text">ยืนยันรหัสผ่าน</string>
+    <string name="label_terms_and_condition"> ยอมรับ<u>ข้อกำหนดและเงื่อนไขการใช้งาน</u> </string>
+    <string name="hyperlinkLogin_text">เข้าสู่ระบบที่นี่</string>
+    <string name="label_have_acc_already">มีบัญชีแล้ว?</string>
+
+    <!--String  validate -->
+    <string name="err_msg_enter_username">กรุณาระบุชื่อผู้ใช้</string>
+    <string name="err_msg_enter_email">กรุณาระบุ E-mail</string>
+    <string name="err_msg_enter_password">กรุณาระบุรหัสผ่าน</string>
+    <string name="err_msg_enter_confirm_password">กรุณายืนยันรหัสผ่าน</string>
+    <string name="err_msg_enter_cd">ยังไม่ติก</string>
+    <string name="err_msg_enter_num">กรุณาระบุเบอร์โทรศัพท์</string>
+
+    <string name="register_successful">ลงทะเบียนสำเร็จ</string>
+    <string name="email_sent_success">ส่งอีเมลล์รีเซ็ตรหัสผ่านแล้ว</string>
+
+    <string name="login_successful">เข้าสู่ระบบสำเร็จ</string>
+
+
+    <!--String  Progress-->
+    <string name="please_wait">กำลังประมวลผล&#8230;</string>
+    <string name="msg_profile_update_sucess">อัปเดตข้อมูลโปรไฟล์เรียบร้อยแล้ว</string>
+
+    <!--String  Profile-->
+    <string name="label_profile_username">ชื่อบัญชีผู้ใช้</string>
+    <string name="label_profile_gender">เพศ</string>
+    <string name="label_profile_birthday">วันเกิด</string>
+    <string name="label_profile_residence">ลักษณะที่อยู่อาศัย</string>
+    <string name="label_profile_Email">E - mail</string>
+    <string name="label_profile_num">เบอร์โทรศัพท์</string>
+    <string name="label_social_connected">เชื่อมต่อบัญชี Social media</string>
+    <string name="label_fb">Facebook</string>
+    <string name="label_social_gg">Google</string>
+    <string name="hint_profile_bday"> 5 พฤษภาคม 2021 </string>
+
+    <string name="rd_lbl_male">ชาย</string>
+    <string name="rd_lbl_female">หญิง</string>
+    <string name="rd_lbl_lgbtq">LGBTQ+</string>
+
+    <string name="profile_delete_acc">ลบบัญชี</string>
+
+    <!--String  Head bar-->
+    <string name="headbar_edit_profile">แก้ไขโปรไฟล์</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_home">หน้าหลัก</string>
+    <string name="title_task">To Do list</string>
+    <string name="title_save">ที่บันทึกไว้</string>
+    <string name="title_search">ค้นหา</string>
+    <string name="title_profile">โปรไฟล์</string>
+
+    <!--String  toolbar-->
+    <string name="btn_save_right">บันทึก</string>
+
+    <!--String  navbar-->
+    <string name="navbar_home">หน้าหลัก</string>
+    <string name="navbar_todolist">สิ่งที่ต้องทำ</string>
+    <string name="navbar_search">ค้นหา</string>
+    <string name="navbar_profile">โปรไฟล์</string>
+
+    <!--String  HomePage-->
+    <string name="tv_user_province"> กรุงเทพฯ </string>
+    <string name="tv_province_temp"> วันนี้ฝนตกตลอดวัน </string>
+    <string name="tv_temp_daily"> 25 </string>
+    <string name="tv_see_my_plant"> <u> ดูแปลงผักของฉัน </u> </string>
+    <string name="user_plant_name"> ชื่อผักสวนครัว </string>
+
+    <string name="hint_search"> ค้นหาชื่อผัก หรือ ชื่อผลิตภัณฑ์ </string>
+
+    <string name="headbar_add_plant"> เพิ่มข้อมูลผักของคุณ </string>
+    <string name="et_add_plant_name">ตั้งชื่อผักที่คุณปลูก</string>
+    <string name="vesgetable_name"> ชนิดของผัก </string>
+    <string name="desc"> คำอธิบาย </string>
+
+    <string name="title_select_img_action"> อัปโหลดรูปภาพจาก </string>
+    <string name="lb_camera"> กล้อง </string>
+    <string name="lb_gallery"> อัลบัมรูปภาพ </string>
+
+
+
+    <!--String  ProfilePage-->
+    <string name="label_username">  ชื่อผู้ใช้ </string>
+    <string name="tv_pined"> ที่บันทึกไว้ </string>
+    <string name="tv_logout">  ออกจากระบบ </string>
+
+    <string name="tv_save"> บันทึก </string>
+
+    <!--String  To Do List Page-->
+    <string name="headbar_add_task"> เพิ่ม To do list </string>
+    <string name="et_add_task_name"> ตั้งชื่อ To do list </string>
+    <string name="hint_task_desc"> คำอธิบาย </string>
+
+    <!--String  Search&Save Page-->
+    <string name="label_thing"> ชื่อ </string>
+    <string name="title_search_thing"> ชื่อ thing </string>
+
+
+    <string name="read_storage_permission_denied">Oops, you just denied the permission for strorage. You can also allow it from settings.</string>
+
+    <string name="image_selection_failed">การแสดงรูปผิดพลาด</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_menu">MainActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom_nav">BottomNavActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+
+
+</resources>

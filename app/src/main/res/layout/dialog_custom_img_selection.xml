@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/margin10"
+    app:chainUseRtl="true">
+
+    <com.kmitl.mythesis.utils.HPTextSemiBold
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginSide"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/title_select_img_action"
+        android:textColor="@color/darkgrey"
+        android:textSize="@dimen/content_textSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/box_upload_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </com.kmitl.mythesis.utils.HPTextSemiBold>
+
+    <LinearLayout
+        android:id="@+id/box_upload_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginSide"
+        android:layout_marginEnd="@dimen/marginSide"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.kmitl.mythesis.utils.HPTextRegular
+            android:id="@+id/tv_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginSide"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/lb_camera"
+            android:textColor="@color/darkgrey"
+            android:textSize="@dimen/content_textSize"
+            app:drawableTopCompat="@drawable/ic_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_gallery"
+            >
+        </com.kmitl.mythesis.utils.HPTextRegular>
+
+        <com.kmitl.mythesis.utils.HPTextRegular
+            android:id="@+id/tv_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginSide"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/lb_gallery"
+            android:textColor="@color/darkgrey"
+            android:textSize="@dimen/content_textSize"
+            app:drawableTopCompat="@drawable/ic_gallery"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_camera">
+        </com.kmitl.mythesis.utils.HPTextRegular>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

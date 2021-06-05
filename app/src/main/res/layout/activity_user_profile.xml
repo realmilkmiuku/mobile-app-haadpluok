@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.UserProfileActivity">
+
+    <!-- TODO: Edit profile -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profile_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:rowCount="1"
+            android:columnCount="3"
+            android:layout_marginStart="@dimen/marginSide"
+            android:layout_marginEnd="@dimen/marginSide"
+
+            >
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="center_vertical" />
+
+            <com.kmitl.mythesis.utils.HPTextSemiBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/btw_marginStart"
+                android:text="@string/headbar_edit_profile"
+                android:textSize="21sp"
+                android:textColor="@color/PrimaryText"
+                android:layout_gravity="center_vertical" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_profile_activity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <FrameLayout
+                android:id="@+id/fil_img"
+                android:layout_width="@dimen/profile_user_image_size"
+                android:layout_height="@dimen/profile_user_image_size"
+                android:layout_marginTop="@dimen/image_marginTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/box_username">
+
+                <ImageView
+                    android:id="@+id/iv_user_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                   android:background="@drawable/img_bg_placeholder"
+                    />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_username"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin10"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fil_img">
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/label_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_profile_username"
+                    android:textSize="@dimen/profile_tv"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fil_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.kmitl.mythesis.utils.HPEditText
+                        android:id="@+id/et_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/profile_fil_height"
+                        android:padding="@dimen/profile_et_padding"
+                        android:layout_centerVertical="true"
+                        android:gravity="end"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:hint=""
+                        android:textSize="@dimen/et_size"
+                        android:textColor="@color/colorPrimary"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_gender"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_username">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_fil_height"
+                    android:layout_marginTop="5dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="1">
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:id="@+id/label_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/label_profile_gender"
+                        android:textSize="@dimen/profile_tv"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/rg_marginside"
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_gravity="center_vertical">
+
+                        <com.kmitl.mythesis.utils.HPRadioButton
+                            android:id="@+id/rd_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/rd_space"
+                            android:gravity="center"
+                            android:checked="true"
+                            android:button="@drawable/custom_radiobutton"
+                            android:text="@string/rd_lbl_male"
+                            android:textColor="@drawable/profile_gender_tab_text_color_selector"
+                            android:textStyle="bold"/>
+
+                        <com.kmitl.mythesis.utils.HPRadioButton
+                            android:id="@+id/rd_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/rd_space"
+                            android:gravity="center"
+                            android:checked="false"
+                            android:button="@drawable/custom_radiobutton"
+                            android:text="@string/rd_lbl_female"
+                            android:textColor="@drawable/profile_gender_tab_text_color_selector"
+                            android:textStyle="bold"/>
+
+                        <com.kmitl.mythesis.utils.HPRadioButton
+                            android:id="@+id/rd_lgbtq"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/rd_space"
+                            android:gravity="center"
+                            android:checked="false"
+                            android:button="@drawable/custom_radiobutton"
+                            android:text="@string/rd_lbl_lgbtq"
+                            android:textColor="@drawable/profile_gender_tab_text_color_selector"
+                            android:textStyle="bold"/>
+                    </RadioGroup>
+
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_bday"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/profile_fil_height"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_gender">
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/label_bday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_profile_birthday"
+                    android:textSize="@dimen/profile_tv"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <com.kmitl.mythesis.utils.HPButton
+                    android:id="@+id/btn_et_pick_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/hint_profile_bday"
+                    android:textSize="@dimen/et_size"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center_vertical|right"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_res"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_bday">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_fil_height"
+                    android:layout_marginTop="5dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="1">
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:id="@+id/label_res"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/label_profile_residence"
+                        android:textSize="@dimen/profile_tv"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_residence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/rg_res_marginside"
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_gravity="center_vertical">
+
+                        <com.kmitl.mythesis.utils.HPRadioButton
+                            android:id="@+id/rd_apartment"
+                            android:layout_width="@dimen/btn_radio_size_res"
+                            android:layout_height="@dimen/btn_radio_size_res"
+                            android:layout_marginStart="@dimen/rd_space_res"
+                            android:background="@drawable/profile_apartment_tab_selector"
+                            android:button="@null"
+                            android:checked="false"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <com.kmitl.mythesis.utils.HPRadioButton
+                            android:id="@+id/rd_home"
+                            android:layout_width="@dimen/btn_radio_size_res"
+                            android:layout_height="@dimen/btn_radio_size_res"
+                            android:layout_marginStart="@dimen/rd_space_res"
+                            android:background="@drawable/profile_home_tab_selector"
+                            android:button="@null"
+                            android:checked="false"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_res">
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/label_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_profile_Email"
+                    android:textSize="@dimen/profile_tv"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fil_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.kmitl.mythesis.utils.HPEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/profile_fil_height"
+                        android:padding="@dimen/profile_et_padding"
+                        android:layout_centerVertical="true"
+                        android:gravity="end"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:hint=""
+                        android:textSize="@dimen/et_size"
+                        android:textColor="@color/PrimaryText"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="30"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_num"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_email">
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/label_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_profile_num"
+                    android:textSize="@dimen/profile_tv"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fil_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.kmitl.mythesis.utils.HPEditText
+                        android:id="@+id/et_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/profile_fil_height"
+                        android:padding="@dimen/profile_et_padding"
+                        android:layout_centerVertical="true"
+                        android:gravity="end"
+                        android:background="@android:color/transparent"
+                        android:inputType="phone"
+                        android:hint="XXX-XXX-XXXX"
+                        android:textSize="@dimen/et_size"
+                        android:textColor="@color/colorPrimary"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_social"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_num">
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/label_social"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_social_connected"
+                    android:textSize="@dimen/profile_tv"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_fb_connect"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_social">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:columnCount="3"
+                    android:orientation="horizontal"
+                    android:rowCount="1">
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:id="@+id/bg_btn_fb"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/btn_social_marginstart"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:text="F"
+                        android:textColor="@color/white" />
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/btn_social_marginstart"
+                        android:text="@string/label_fb"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/profile_tv" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Switch
+                        android:id="@+id/sw_fb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_gg_connect"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_box_marginTop"
+                android:layout_marginStart="@dimen/marginSide"
+                android:layout_marginEnd="@dimen/marginSide"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/box_fb_connect">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:columnCount="3"
+                    android:orientation="horizontal"
+                    android:rowCount="1">
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:id="@+id/bg_btn_gg"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/btn_social_marginstart"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:text="G"
+                        android:textColor="@color/white" />
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/btn_social_marginstart"
+                        android:text="@string/label_social_gg"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/profile_tv" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Switch
+                        android:id="@+id/sw_gg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
+
+                <com.kmitl.mythesis.utils.HPButton
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:padding="@dimen/btn_padding"
+                    android:background="@drawable/button_bg"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:text="@string/btn_save_right"
+                    android:textSize="@dimen/btn_tv_textSize"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent" />
+
+            </RelativeLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

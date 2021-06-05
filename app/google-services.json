@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1021068929754",
+    "project_id": "mythesis-6b697",
+    "storage_bucket": "mythesis-6b697.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021068929754:android:d88c2cadc40f52a8dbd3e3",
+        "android_client_info": {
+          "package_name": "com.kmitl.mythesis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021068929754-0g3uu64frsluo3fm40iq2jvk71cvot4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kmitl.mythesis",
+            "certificate_hash": "7cb5e3d6f4b1514e513510d555102ae19665b465"
+          }
+        },
+        {
+          "client_id": "1021068929754-96dsouqt4o23boede8dguia87u14narj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjqWV52zmk3tmrpltIK2IdkgKOv3tN9F0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021068929754-96dsouqt4o23boede8dguia87u14narj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

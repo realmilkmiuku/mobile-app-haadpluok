@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.AddPlantActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/bar_marginTop"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:orientation="horizontal"
+            android:rowCount="1"
+            android:columnCount="3"
+            android:layout_marginStart="@dimen/marginSide"
+            android:layout_marginEnd="@dimen/marginSide"
+            >
+
+            <ImageView
+                android:id="@+id/ic_back"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="center_vertical"
+                />
+
+            <com.kmitl.mythesis.utils.HPTextSemiBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/btw_marginStart"
+                android:text="@string/headbar_add_plant"
+                android:textSize="@dimen/titlebar_textSize"
+                android:textColor="@color/PrimaryText"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.kmitl.mythesis.utils.HPTextRegular
+                android:id="@+id/btn_save_add_plant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_toEndOf="@+id/ic_back"
+                android:text="@string/tv_save"
+                android:textColor="@color/black"
+                android:textSize="@dimen/btn_tv_textSize" />
+        </LinearLayout>
+
+            <com.kmitl.mythesis.utils.HPEditText
+                android:id="@+id/et_add_plant_name"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:maxLines="1"
+                android:gravity="center"
+                android:inputType="text"
+                android:hint="@string/et_add_plant_name"
+                android:textSize="@dimen/title_textSize"
+                android:textColor="@color/PrimaryText"
+                />
+
+            <FrameLayout
+                android:id="@+id/fil_img"
+                android:layout_width="@dimen/profile_user_plant_image_size"
+                android:layout_height="@dimen/profile_user_plant_image_size"
+                android:layout_marginTop="@dimen/image_marginTop"
+                android:layout_marginBottom="@dimen/image_marginTop"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_user_plant_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_plant_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/img_bg_placeholder"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_camera"
+                    android:layout_width="@dimen/ic_size30"
+                    android:layout_height="@dimen/ic_size30"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="@dimen/margin10"
+                    android:layout_marginBottom="@dimen/margin10"
+                    android:background="@drawable/ic_camera_grey" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/light_grey"
+                android:orientation="vertical">
+
+                <!-- TODO: add User's plants -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:columnCount="3"
+                    android:orientation="horizontal"
+                    android:rowCount="1">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="@dimen/marginSide"
+                        android:src="@drawable/ic_plant_name"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:id="@+id/pick_ves"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/ic_arrow_selected_menu"
+                        android:layout_marginStart="@dimen/btw_marginStart"
+                        android:layout_marginEnd="@dimen/marginSide"
+                        android:background="@color/white"
+                        android:drawablePadding="10dp"
+                        android:gravity="left"
+                        android:layout_gravity="center_vertical"
+                        android:hint="@string/vesgetable_name"
+                        android:textColor="@color/PrimaryText"
+                        android:textSize="@dimen/content_textSize" />
+
+                </LinearLayout>
+
+                <!-- TODO: add Birthday of plant -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:rowCount="1"
+                    android:columnCount="3"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/ic_plant_bday"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:id="@+id/btn_et_add_plant_bday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginStart="@dimen/btw_marginStart"
+                        android:background="@null"
+                        android:hint="@string/hint_profile_bday"
+                        android:textSize="@dimen/et_size"
+                        android:textColor="@color/PrimaryText"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        />
+
+                </LinearLayout>
+
+                <!-- TODO: add User's plant desc -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:rowCount="1"
+                    android:columnCount="2"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="@dimen/marginSide"
+                        android:src="@drawable/ic_plant_des"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                        <com.kmitl.mythesis.utils.HPEditText
+                            android:id="@+id/et_add_plant_des"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/btw_marginStart"
+                            android:layout_marginEnd="@dimen/margin20"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/desc"
+                            android:inputType="text"
+                            android:textColor="@color/PrimaryText"
+                            android:textSize="@dimen/content_textSize"
+                            />
+
+                </LinearLayout>
+            </LinearLayout>
+    </LinearLayout>
+
+    </ScrollView>
+    </LinearLayout>
+
+</FrameLayout>

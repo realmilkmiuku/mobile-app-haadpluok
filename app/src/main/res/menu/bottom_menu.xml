@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/navbar_home"
+        android:icon="@drawable/ic_navbar_home"
+        />
+
+    <item
+        android:id="@+id/todolist"
+        android:title="@string/navbar_todolist"
+        android:icon="@drawable/ic_navbar_task"
+        />
+
+    <item
+        android:id="@+id/search"
+        android:title="@string/navbar_search"
+        android:icon="@drawable/ic_navbar_search"
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/navbar_profile"
+        android:icon="@drawable/ic_navbar_user"
+        />
+
+</menu>

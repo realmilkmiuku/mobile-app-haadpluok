@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.AddTaskActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/bar_marginTop"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:orientation="horizontal"
+            android:rowCount="1"
+            android:columnCount="3"
+            android:layout_marginStart="@dimen/marginSide"
+            android:layout_marginEnd="@dimen/marginSide"
+            >
+
+            <ImageView
+                android:id="@+id/ic_back"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="center_vertical"
+                />
+
+            <com.kmitl.mythesis.utils.HPTextSemiBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/btw_marginStart"
+                android:text="@string/headbar_add_task"
+                android:textSize="@dimen/titlebar_textSize"
+                android:textColor="@color/PrimaryText"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.kmitl.mythesis.utils.HPTextRegular
+                android:id="@+id/btn_save_add_plant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_toEndOf="@+id/ic_back"
+                android:text="@string/tv_save"
+                android:textColor="@color/black"
+                android:textSize="@dimen/btn_tv_textSize" />
+        </LinearLayout>
+
+            <com.kmitl.mythesis.utils.HPEditText
+                android:id="@+id/et_add_task_name"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:maxLines="1"
+                android:gravity="center"
+                android:inputType="text"
+                android:hint="@string/et_add_task_name"
+                android:textSize="@dimen/title_textSize"
+                android:textColor="@color/PrimaryText"
+                />
+
+        <!-- TODO: Select task type -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/image_marginTop"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_task_watering"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_task_shoveling"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_task_fertilizer"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_task_insecticide"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_task_harvest"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <!-- TODO: show task type text -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:background="@drawable/bg_task_type"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:paddingHorizontal="5dp"
+                android:paddingTop="2dp">
+
+                <com.kmitl.mythesis.utils.HPTextSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Task_type"
+                    android:textColor="@android:color/white"
+                    android:textSize="10dp"
+                    android:paddingTop="1dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:orientation="vertical">
+
+            <!-- TODO: add User's plants -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:rowCount="1">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/marginSide"
+                    android:src="@drawable/ic_plant_name"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                    <com.kmitl.mythesis.utils.HPTextRegular
+                        android:id="@+id/pick_ves"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/ic_arrow_selected_menu"
+                        android:layout_marginStart="@dimen/btw_marginStart"
+                        android:layout_marginEnd="@dimen/marginSide"
+                        android:background="@color/white"
+                        android:drawablePadding="10dp"
+                        android:gravity="left"
+                        android:layout_gravity="center_vertical"
+                        android:hint="@string/user_plant_name"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="@dimen/content_textSize" />
+
+            </LinearLayout>
+
+            <!-- TODO: add Task repeat day -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="3"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_task_calendar"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:rowCount="1"
+                    android:columnCount="7"
+                    android:layout_marginTop="@dimen/btw_marginTop"
+                    android:layout_marginStart="@dimen/btw_marginStart"
+                    android:background="@android:color/white"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="อา."
+                        android:textColor="@android:color/white" />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="จ."
+                        android:textColor="@android:color/white" />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="อ."
+                        android:textColor="@android:color/white" />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="พ."
+                        android:textColor="@android:color/white" />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="พฤ."
+                        android:textColor="@android:color/white" />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="ศ."
+                        android:textColor="@android:color/white" />
+
+                    <com.kmitl.mythesis.utils.HPButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_circle"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:text="ส."
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- TODO: add Task repeat time -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="3"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_task_time"
+                    android:layout_gravity="center_vertical"
+                    />
+
+            </LinearLayout>
+
+            <!-- TODO: add Task desc -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="2"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/marginSide"
+                    android:src="@drawable/ic_plant_des"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <com.kmitl.mythesis.utils.HPEditText
+                    android:id="@+id/et_add_task_des"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/btw_marginStart"
+                    android:layout_marginEnd="@dimen/margin20"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/desc"
+                    android:inputType="text"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="@dimen/content_textSize"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

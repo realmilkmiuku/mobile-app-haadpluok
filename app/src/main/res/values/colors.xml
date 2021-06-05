@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorPrimary">#1E1E1E</color>
+
+    <!--   <color name="colorPrimary">#1E1E1E</color> -->
+
+    <color name="yellow">#f8b663</color>
+    <color name="yellow2">#FFB208</color>
+    <color name="greenMain">#29CC5A</color>
+
+    <color name="green2">#1CB053</color>
+    <color name="green3">#00A14B</color>
+    <color name="green4">#44B053</color>
+    <color name="light_green">#63b983</color>
+    63b983
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Color Text-->
+    <color name="HintSecondaryText">#000000</color>
+    <color name="PrimaryText">#000000</color>
+    <color name="colorSecondaryText">#BBBBBB</color>
+    <color name="colorSecondaryObj">#E3E3E3</color>
+
+
+    <!-- Color social-->
+    <color name="blue_fb">#4267b2</color>
+    <color name="red_gg">#DB4437</color>
+
+    <!-- Color day-->
+
+
+    <!-- Color icon-->
+    <color name="light_grey">#EEEEEE</color>
+    <color name="grey">#D2D2D2</color>
+    <color name="darkgrey">#1E1E1E</color>
+
+    <!-- Color bottom_nav-->
+    <color name="greyNav">#DDDDDD</color>
+
+    <!-- Color SnackBar-->
+    <color name="colorSnackBarError">#DB4437</color>
+    <color name="colorSnackBarSuccess">#4267b2</color>
+
+    <!-- old Color -->
+    <!-- Fragments -->
+    <color name="homeFragment">#4267b2</color>
+    <color name="todolistFragment">#DB4437</color>
+    <color name="searchFragment">#44B053</color>
+
+</resources>
