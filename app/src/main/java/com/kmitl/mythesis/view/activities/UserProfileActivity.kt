@@ -14,6 +14,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.kmitl.mythesis.R
 import com.kmitl.mythesis.firestore.FirestoreClass
 import com.kmitl.mythesis.models.User
@@ -214,11 +216,20 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                         //iv_user_photo.setImageURI(Uri.parse(selectedImageFileUri.toString()))
 
                         GlideLoader(this).loadUserPicture(mSelectedImageFileUri!!, iv_user_photo)
+
+                        Glide.with(this)
+                            .load(mSelectedImageFileUri)
+                            .fitCenter()
+                            .circleCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.ic_user_placeholder)
+                            .into(iv_user_photo)
+
                     } catch (e: IOException) {
                         e.printStackTrace()
                         Toast.makeText(
                             this@UserProfileActivity,
-                            resources.getString(R.string.image_selection_failed),
+                            resources.getString(R.string.err_msg_image_selection_failed),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
