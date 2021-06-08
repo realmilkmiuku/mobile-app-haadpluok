@@ -40,6 +40,10 @@
 
     <string name="login_successful">เข้าสู่ระบบสำเร็จ</string>
 
+    <string name="err_msg_image_selection_failed">การแสดงรูปผิดพลาด</string>
+    <string name="err_msg_user_plant_name">กรุณาระบุชื่อผักของคุณ</string>
+
+
 
     <!--String  Progress-->
     <string name="please_wait">กำลังประมวลผล&#8230;</string>
@@ -92,7 +96,7 @@
 
     <string name="headbar_add_plant"> เพิ่มข้อมูลผักของคุณ </string>
     <string name="et_add_plant_name">ตั้งชื่อผักที่คุณปลูก</string>
-    <string name="vesgetable_name"> ชนิดของผัก </string>
+    <string name="title_select_ves_type"> ชนิดของผัก </string>
     <string name="desc"> คำอธิบาย </string>
 
     <string name="title_select_img_action"> อัปโหลดรูปภาพจาก </string>
@@ -120,9 +124,10 @@
 
     <string name="read_storage_permission_denied">Oops, you just denied the permission for strorage. You can also allow it from settings.</string>
 
-    <string name="image_selection_failed">การแสดงรูปผิดพลาด</string>
+
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_menu">MainActivity</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bottom_nav">BottomNavActivity</string>
