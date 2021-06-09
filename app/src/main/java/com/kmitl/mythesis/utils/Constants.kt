@@ -9,6 +9,8 @@ import com.google.type.Date
 
 object Constants {
     const val USERS: String = "users"
+    const val INFO_VEGETABLES: String = "info_vegetables"
+
     const val MYTEHSIS_PREFERENCE: String   = "MyThesisPrefs"
     const val LOGGEN_IN_USERNAME: String    = "logged_in_username"
     const val EXTRA_USER_DETAILS: String    = "extra_user_details"
@@ -46,6 +48,7 @@ object Constants {
     const val goods_link: String =""
 
     //ข้อมูลผักที่User ปลูก
+    const val USER_ADD_PLANT    = "user_add_plant"
     const val USER_VES_NAME: String ="user_ves_name"
     const val USER_VES_TYPE: String ="user_ves_type"
     const val USER_VES_DATE: String ="user_ves_date"
