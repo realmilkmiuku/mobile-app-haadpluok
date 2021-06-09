@@ -8,11 +8,15 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kmitl.mythesis.R
+import com.kmitl.mythesis.models.AddPlant
+import com.kmitl.mythesis.models.User
 import com.kmitl.mythesis.utils.Constants
+import com.kmitl.mythesis.utils.Constants.ves_name
 import com.kmitl.mythesis.view.fragments.HomeFragment
 import com.kmitl.mythesis.view.fragments.ProfileFragment
 import com.kmitl.mythesis.view.fragments.SearchFragment
 import com.kmitl.mythesis.view.fragments.TaskFragment
+import kotlinx.android.synthetic.main.activity_user_profile.*
 
 class BottomNavActivity : AppCompatActivity() {
     private lateinit var tv_main : TextView

@@ -9,6 +9,8 @@ import com.google.type.Date
 
 object Constants {
     const val USERS: String = "users"
+    const val INFO_VEGETABLES: String = "info_vegetables"
+
     const val MYTEHSIS_PREFERENCE: String   = "MyThesisPrefs"
     const val LOGGEN_IN_USERNAME: String    = "logged_in_username"
     const val EXTRA_USER_DETAILS: String    = "extra_user_details"
@@ -46,9 +48,25 @@ object Constants {
     const val goods_link: String =""
 
     //ข้อมูลผักที่User ปลูก
-    const val user_ves_name: String =""
-    const val user_ves_date: String =""
-    const val user_ves_des: String =""
+    const val USER_ADD_PLANT    = "user_add_plant"
+    const val USER_VES_NAME: String ="user_ves_name"
+    const val USER_VES_TYPE: String ="user_ves_type"
+    const val USER_VES_DATE: String ="user_ves_date"
+    const val USER_VES_DES: String ="user_ves_des"
+
+    fun plantType():ArrayList<String>{
+        val list = ArrayList<String>()
+        list.add("กะเพรา")
+        list.add("กว้างตุ้ง")
+        list.add("ต้นหอม")
+        list.add("ปวยเล้ง")
+        list.add("ผักชี")
+        list.add("ผักบุ้ง")
+        list.add("ผักสลัด")
+        list.add("พริก")
+        list.add("มะกรูด")
+        return list
+    }
 
     //ข้อมูลการสร้าง To do list
     const val todolist_name: String =""

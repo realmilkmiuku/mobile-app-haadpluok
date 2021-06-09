@@ -79,12 +79,12 @@
                     android:id="@+id/iv_user_photo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/img_placeholder" />
+                    android:background="@drawable/ic_user_placeholder"
+                    android:scaleType="fitXY" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                   android:background="@drawable/img_bg_placeholder"
                     />
             </FrameLayout>
 
