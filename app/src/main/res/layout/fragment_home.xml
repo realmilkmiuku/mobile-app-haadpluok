@@ -145,14 +145,6 @@
                 android:rowCount="1"
                 android:columnCount="2">
 
-                <ImageView
-                    android:id="@+id/ic_sort"
-                    android:layout_width="@dimen/ic_size30"
-                    android:layout_height="@dimen/ic_size30"
-                    android:layout_gravity="center_horizontal|end"
-                    android:src="@drawable/ic_sort"
-                    />
-
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"

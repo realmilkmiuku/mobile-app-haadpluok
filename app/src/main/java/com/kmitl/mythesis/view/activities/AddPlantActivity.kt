@@ -45,8 +45,12 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import com.kmitl.mythesis.databinding.DialogCustomVeslistBinding
+import com.kmitl.mythesis.firestore.FirestoreClass
+import com.kmitl.mythesis.models.AddPlant
+import com.kmitl.mythesis.models.User
 import com.kmitl.mythesis.utils.Constants
 import com.kmitl.mythesis.view.adapters.CustomListVesAdapter
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -106,7 +110,7 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.btn_save_add_plant -> {
                     val nPlant      = mBinding.etAddPlantName.text.toString().trim(){ it <= ' ' }
-                    val bdayPlant   = mBinding.btnEtAddPlantBday.text.toString().trim(){ it <= ' ' }
+                    val bDayPlant   = mBinding.btnEtAddPlantBday.text.toString().trim(){ it <= ' ' }
                     val desPlant    = mBinding.etAddPlantDes.text.toString().trim(){ it <= ' ' }
 
                     when {
