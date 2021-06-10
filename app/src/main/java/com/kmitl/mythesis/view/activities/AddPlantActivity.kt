@@ -148,21 +148,19 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
 
     private fun setPickBirthDay() {
 
-            val getDate: Calendar = Calendar.getInstance()
-            val datePicker = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 ->
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
 
-                val selectDate = Calendar.getInstance()
-                selectDate.set(Calendar.YEAR, i)
-                selectDate.set(Calendar.MONTH, i2)
-                selectDate.set(Calendar.DAY_OF_MONTH, i3)
-
-                val date = formatDate.format(selectDate.time)
-                Toast.makeText(this, "Date : " + date, Toast.LENGTH_SHORT).show()
-                mBinding.btnEtAddPlantBday.text = date
-
-
-            }, getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH), getDate.get(Calendar.DAY_OF_MONTH))
-            datePicker.show()
+        mBinding.btnEtAddPlantBday.setOnClickListener {
+            val dateBday = DatePickerDialog(this ,
+                { view, year, month, dayOfMonth ->
+                    //Display selected date in TextView
+                    mBinding.btnEtAddPlantBday.setText("" + dayOfMonth + "/" + (month.toInt() + 1) + "/" + year)
+                }, year, month, day)
+            dateBday.show()
+        }
 
     }
 
