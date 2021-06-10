@@ -32,58 +32,26 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private var mUserDetails: User = User()
     private var mSelectedImageFileUri: Uri? = null
     private var mUserProfileImageURI: String = ""
-    private lateinit var btn_back : ImageView
-    private lateinit var btn_et_pick_date   : Button
-    private lateinit var btn_save           : Button
-    private lateinit var et_num             : EditText
-
-    private var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
-        btn_et_pick_date    = findViewById<Button>(R.id.btn_et_pick_date)
-        btn_save            = findViewById<Button>(R.id.btn_save)
-        et_num              = findViewById<EditText>(R.id.et_num)
-        btn_back  = findViewById(R.id.ic_back)
-
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             mUserDetails = intent.getParcelableExtra<User>(Constants.EXTRA_USER_DETAILS)!!
         }
+        val date = getCurrentDateTime()
+        val currentDate = date.toString("dd/MM/yyyy")
+        btn_et_pick_date.setHint(currentDate)
 
         et_username.isEnabled = false
         et_username.setText(mUserDetails.userName)
-
         et_email.isEnabled = false
         et_email.setText(mUserDetails.email)
 
         iv_user_photo.setOnClickListener(this@UserProfileActivity)
+        btn_et_pick_date.setOnClickListener(this@UserProfileActivity)
         btn_save.setOnClickListener(this@UserProfileActivity)
-
-
-    }
-
-    fun setPickBirthDay() {
-
-        btn_et_pick_date.setOnClickListener {
-            val getDate: Calendar = Calendar.getInstance()
-            val datePicker = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 ->
-
-                val selectDate = Calendar.getInstance()
-                selectDate.set(Calendar.YEAR, i)
-                selectDate.set(Calendar.MONTH, i2)
-                selectDate.set(Calendar.DAY_OF_MONTH, i3)
-
-                val date = formatDate.format(selectDate.time)
-                Toast.makeText(this, "Date : " + date, Toast.LENGTH_SHORT).show()
-                btn_et_pick_date.text = date
-
-
-            }, getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH), getDate.get(Calendar.DAY_OF_MONTH))
-            datePicker.show()
-
-        }
 
     }
 
@@ -117,6 +85,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
 
+                R.id.btn_et_pick_date -> {
+                    pickBirthDay()
+                }
+
                 R.id.btn_save -> {
                     if(validateUserProfileDetails()) {
                         showProgressDialog(resources.getString(R.string.please_wait))
@@ -134,19 +106,25 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     private fun updateUserProfileDetails() {
         //<key = string, any =obj>
-        val userHashMap = HashMap<String, Any>()
-
-        val mobileNumber = et_num.text.toString().trim { it <= ' ' }
-
-        val birthDay = btn_et_pick_date.text.toString().trim { it <= ' ' }
-
+        val userHashMap     = HashMap<String, Any>()
+        val birthday        = btn_et_pick_date.text.toString().trim { it <= ' ' }
+        val mobileNumber    = et_num.text.toString().trim { it <= ' ' }
         val gender =
             if (rd_male.isChecked) {
                 Constants.MALE
-            } else if (rd_male.isChecked){
+            } else if (rd_female.isChecked){
                 Constants.FEMALE
             } else {
                 Constants.LGBTQ
+            }
+
+        val residenceType =
+            if (rd_apartment.isChecked) {
+                Constants.APARTMENT
+            } else if (rd_home.isChecked){
+                Constants.HOME
+            } else {
+                Constants.NONE
             }
 
         if(mUserProfileImageURI.isNotEmpty()) {
@@ -157,27 +135,51 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             userHashMap[Constants.MOBILE] = mobileNumber.toLong()
         }
 
-        userHashMap[Constants.GENDER] = gender
-
+        userHashMap[Constants.GENDER]      = gender
+        userHashMap[Constants.BIRTHDAY]    = birthday
+        userHashMap[Constants.RESIDENT]    = residenceType
         userHashMap[Constants.COMPLETE_PROFILE] = 1
         //showProgressDialog(resources.getString(R.string.please_wait))
 
         FirestoreClass().updateUserProfileData(this, userHashMap)
     }
 
-
     fun userProfileUpdateSuccess() {
         hideProgressDialog()
 
         Toast.makeText(
                 this@UserProfileActivity,
-                resources.getString(R.string.msg_profile_update_sucess),
+                resources.getString(R.string.msg_profile_update_success),
                 Toast.LENGTH_SHORT
         ).show()
 
         startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
         finish()
 
+    }
+
+    private fun pickBirthDay() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dateBday = DatePickerDialog(this ,
+            { view, year, month, dayOfMonth ->
+                //Display selected date in TextView
+                btn_et_pick_date.setText("" + dayOfMonth + "/" + (month.toInt() + 1) + "/" + year)
+            }, year, month, day)
+        dateBday.show()
+
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
     }
 
     override fun onRequestPermissionsResult(
@@ -210,20 +212,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 if (data != null) {
                     try {
                         //the Uri of selected image from phone storage.
-                        mSelectedImageFileUri = data.data!!
+                        val selectedImageFileUri = data.data!!
                         //!! not be null
 
-                        //iv_user_photo.setImageURI(Uri.parse(selectedImageFileUri.toString()))
-
-                        GlideLoader(this).loadUserPicture(mSelectedImageFileUri!!, iv_user_photo)
-
-                        Glide.with(this)
-                            .load(mSelectedImageFileUri)
-                            .fitCenter()
-                            .circleCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .placeholder(R.drawable.ic_user_placeholder)
-                            .into(iv_user_photo)
+                        //iv_user_photo.setImageURI(selectedImageFileUri)
+                        GlideLoader(this).loadUserPicture(selectedImageFileUri, iv_user_photo)
 
                     } catch (e: IOException) {
                         e.printStackTrace()

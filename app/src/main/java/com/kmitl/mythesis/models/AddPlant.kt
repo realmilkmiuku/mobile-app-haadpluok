@@ -8,8 +8,8 @@ import kotlinx.android.parcel.Parcelize
 class AddPlant (
     val id: String ="",
     val plantName: String ="",
-    val image: String ="",
-    val PlantType: String="",
+    val plantImage: String ="",
+    val plantType: String="",
     val plantBday: String ="",
     val plantDes: String = "", ): Parcelable
 

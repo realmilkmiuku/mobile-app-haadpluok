@@ -100,7 +100,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fil_img">
 
-                <com.kmitl.mythesis.utils.HPTextRegular
+                <com.kmitl.mythesis.utils.HPTextSemiBold
                     android:id="@+id/label_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                     android:orientation="horizontal"
                     android:rowCount="1">
 
-                    <com.kmitl.mythesis.utils.HPTextRegular
+                    <com.kmitl.mythesis.utils.HPTextSemiBold
                         android:id="@+id/label_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/box_gender">
 
-                <com.kmitl.mythesis.utils.HPTextRegular
+                <com.kmitl.mythesis.utils.HPTextSemiBold
                     android:id="@+id/label_bday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -264,7 +264,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="@string/hint_profile_bday"
                     android:textSize="@dimen/et_size"
                     android:textColor="@color/colorPrimary"
                     android:gravity="center_vertical|right"
@@ -293,7 +292,7 @@
                     android:orientation="horizontal"
                     android:rowCount="1">
 
-                    <com.kmitl.mythesis.utils.HPTextRegular
+                    <com.kmitl.mythesis.utils.HPTextSemiBold
                         android:id="@+id/label_res"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -360,7 +359,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/box_res">
 
-                <com.kmitl.mythesis.utils.HPTextRegular
+                <com.kmitl.mythesis.utils.HPTextSemiBold
                     android:id="@+id/label_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -412,7 +411,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/box_email">
 
-                <com.kmitl.mythesis.utils.HPTextRegular
+                <com.kmitl.mythesis.utils.HPTextSemiBold
                     android:id="@+id/label_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -442,7 +441,7 @@
                         android:gravity="end"
                         android:background="@android:color/transparent"
                         android:inputType="phone"
-                        android:hint="XXX-XXX-XXXX"
+                        android:hint="ยังไม่ได้ระบุ"
                         android:textSize="@dimen/et_size"
                         android:textColor="@color/colorPrimary"
                         app:counterEnabled="true"
@@ -464,7 +463,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/box_num">
 
-                <com.kmitl.mythesis.utils.HPTextRegular
+                <com.kmitl.mythesis.utils.HPTextSemiBold
                     android:id="@+id/label_social"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

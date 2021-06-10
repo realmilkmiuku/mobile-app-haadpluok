@@ -2,15 +2,12 @@ package com.kmitl.mythesis.view.activities
 
 import android.app.Dialog
 import android.os.Bundle
-
 import android.view.View
 import android.widget.Toast
-
 import com.karumi.dexter.Dexter
 import com.kmitl.mythesis.R
 import com.kmitl.mythesis.databinding.ActivityAddPlantBinding
 import com.kmitl.mythesis.databinding.DialogCustomImgSelectionBinding
-
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
@@ -19,14 +16,15 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-
 import android.net.Uri
 import android.provider.MediaStore
 import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +34,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -46,10 +43,10 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import com.kmitl.mythesis.databinding.DialogCustomVeslistBinding
 import com.kmitl.mythesis.firestore.FirestoreClass
-import com.kmitl.mythesis.models.AddPlant
-import com.kmitl.mythesis.models.User
 import com.kmitl.mythesis.utils.Constants
+import com.kmitl.mythesis.utils.GlideLoader
 import com.kmitl.mythesis.view.adapters.CustomListVesAdapter
+import kotlinx.android.synthetic.main.activity_add_plant.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
 import java.io.File
 import java.io.FileOutputStream
@@ -60,9 +57,9 @@ import java.util.*
 
 class AddPlantActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mBinding: ActivityAddPlantBinding
-    private var mImagePath : String = ""
+    private var mPlantImageUri : String = ""
+    private var mSelectedImageFileUri: Uri? = null
     private  lateinit var mCustomListDialog: Dialog
-    private var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,16 +84,36 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
 
                 R.id.ic_back -> {
                     onBackPressed()
-                    return
                 }
 
                 R.id.iv_camera -> {
-                    customimageSelectionDialog()
+                    // Here we will check if the permission is already allowed or we need to request for it.
+                    // First of all we will check the READ_EXTERNAL_STORAGE permission and if it is not allowed
+                    if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        //showErrorSnackBar("You already have the storage permission.", false)
+                        Constants.showImageChoose(this)
+
+                    } else {
+
+                        /*
+                        Request permission to be granted to this application, these permissions
+                        must be requested in your manifest, they should not be granted to your app,
+                        and they should have protection level
+                        */
+
+                        ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                            Constants.READ_STORAGE_PERMISSION_CODE
+                        )
+                    }
                     return
                 }
 
                 R.id.btn_et_add_plant_bday -> {
-                    setPickBirthDay()
+                    pickBirthDay()
                     return
                 }
 
@@ -109,36 +126,14 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
                 }
 
                 R.id.btn_save_add_plant -> {
-                    val nPlant      = mBinding.etAddPlantName.text.toString().trim(){ it <= ' ' }
-                    val bDayPlant   = mBinding.btnEtAddPlantBday.text.toString().trim(){ it <= ' ' }
-                    val desPlant    = mBinding.etAddPlantDes.text.toString().trim(){ it <= ' ' }
+                    if(validateUserPlantDetails()) {
+                        showProgressDialog(resources.getString(R.string.please_wait))
 
-                    when {
-                        TextUtils.isEmpty(mImagePath) -> {
-                            Toast.makeText(
-                                this@AddPlantActivity,
-                                resources.getString(R.string.err_msg_image_selection_failed),
-                                Toast.LENGTH_SHORT,
-                            ).show()
+                        if(mSelectedImageFileUri != null)
+                            FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri)
+                        else {
+                            createUserPlant()
                         }
-
-                        TextUtils.isEmpty(nPlant) -> {
-                            Toast.makeText(
-                                this@AddPlantActivity,
-                                resources.getString(R.string.err_msg_user_plant_name),
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                        }
-
-                        else -> {
-                            Toast.makeText(
-                                this@AddPlantActivity,
-                                "save จ้า",
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                        }
-
-
                     }
                 }
 
@@ -146,89 +141,58 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun setPickBirthDay() {
+    private fun createUserPlant() {
+        //<key = string, any =obj>
+        val userHashMap = HashMap<String, Any>()
+
+        val nPlant      = mBinding.etAddPlantName.text.toString().trim { it <= ' ' }
+        val typePlant   = mBinding.etType.text.toString().trim { it <= ' ' }
+        val bDayPlant   = mBinding.btnEtAddPlantBday.text.toString().trim { it <= ' ' }
+        val desPlant    = mBinding.etAddPlantDes.text.toString().trim { it <= ' ' }
+
+        if(mPlantImageUri.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = mPlantImageUri
+        }
+
+        userHashMap[Constants.USER_VES_NAME]    = nPlant
+        userHashMap[Constants.USER_VES_TYPE]    = typePlant
+        userHashMap[Constants.USER_VES_DATE]    = bDayPlant
+        userHashMap[Constants.USER_VES_DES]     = desPlant
+
+        userHashMap[Constants.COMPLETE_PROFILE] = 1
+        //showProgressDialog(resources.getString(R.string.please_wait))
+
+        FirestoreClass().createUserPlantData(this, userHashMap)
+    }
+
+    fun createUserPlantSuccess() {
+        hideProgressDialog()
+
+        Toast.makeText(
+            this@AddPlantActivity,
+            resources.getString(R.string.msg_user_plant_crete_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
+        startActivity(Intent(this@AddPlantActivity, MainActivity::class.java))
+        finish()
+
+    }
+
+    private fun pickBirthDay() {
 
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        mBinding.btnEtAddPlantBday.setOnClickListener {
-            val dateBday = DatePickerDialog(this ,
+        val dateBday = DatePickerDialog(this ,
                 { view, year, month, dayOfMonth ->
                     //Display selected date in TextView
                     mBinding.btnEtAddPlantBday.setText("" + dayOfMonth + "/" + (month.toInt() + 1) + "/" + year)
                 }, year, month, day)
             dateBday.show()
-        }
 
-    }
-
-    private fun customimageSelectionDialog() {
-        val dialog = Dialog(this)
-        val binding: DialogCustomImgSelectionBinding =
-            DialogCustomImgSelectionBinding.inflate(layoutInflater)
-        dialog.setContentView(binding.root)
-
-        binding.tvCamera.setOnClickListener {
-            Dexter.withContext(this@AddPlantActivity).withPermissions(
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA,
-            ).withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                    report?.let {
-                        if (report.areAllPermissionsGranted()) {
-                            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                            startActivityForResult(intent, CAMERA)
-                        }
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    permission: MutableList<PermissionRequest>?,
-                    token: PermissionToken?
-                ) {
-                    showRationDialogPermission()
-                }
-
-            }).onSameThread().check()
-
-            dialog.dismiss()
-        }
-
-        binding.tvGallery.setOnClickListener {
-            Dexter.withContext(this@AddPlantActivity)
-                .withPermission(
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                ).withListener(object :PermissionListener{
-                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                       val galleryIntent = Intent(Intent.ACTION_PICK,
-                       MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                        startActivityForResult(galleryIntent, GALLERY)
-                    }
-
-                    override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                        Toast.makeText(
-                            this@AddPlantActivity,
-                            "ปฎิเสธการเข้าถึงอัลบัมรูป",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(
-                        p0: PermissionRequest?,
-                        p1: PermissionToken?
-                    ) {
-                        showRationDialogPermission()
-                    }
-
-                }).onSameThread()
-                .check()
-            //END
-            dialog.dismiss()
-        }
-
-        dialog.show()
     }
 
     fun selectedListItem(item: String, selection: String){
@@ -240,71 +204,26 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == CAMERA){
-                data?.extras?.let{
-                    val thumbnail : Bitmap = data.extras?.get("data") as Bitmap
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == Constants.READ_STORAGE_PERMISSION_CODE) {
 
-                    //mBinding.ivUserPlantPhoto.setImageBitmap(thumbnail)
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
 
-                    Glide.with(this)
-                        .load(thumbnail)
-                        .centerCrop()
-                        .placeholder(R.drawable.img_plant_placeholder)
-                        .into(mBinding.ivUserPlantPhoto)
-
-                    mImagePath = saveImageToInternalStorage(thumbnail)
-
-                    mBinding.ivCamera.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit))
-
-                    Log.i("ImagePath", mImagePath)
-
-                }
+                //showErrorSnackBar("The storage permission is granted", false)
+                Constants.showImageChoose(this)
+            } else {
+                showRationDialogPermission()
             }
-
-            if(requestCode == GALLERY){
-                data?.let{
-                    val selectedPhotoUri = data.data
-
-                    //mBinding.ivUserPlantPhoto.setImageURI(selectedPhotoUri)
-
-                    Glide.with(this)
-                        .load(selectedPhotoUri)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(object  : RequestListener<Drawable>{
-                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                Log.e("TAG", "การแสดงรูปผิดพลาด", e)
-                                return false
-                            }
-
-                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                resource?.let{
-                                    val bitmap: Bitmap = resource?.toBitmap()
-                                    mImagePath = saveImageToInternalStorage(bitmap)
-                                    Log.i("ImagePath", mImagePath)
-                                }
-                                return false
-                            }
-
-                        })
-                        .placeholder(R.drawable.img_plant_placeholder)
-                        .into(mBinding.ivUserPlantPhoto)
-
-                    mBinding.ivCamera.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit))
-
-                }
-            }
-        } else if(resultCode == Activity.RESULT_CANCELED){
-            Log.e("ยกเลิก","ยกเลิกการเพิ่มรูปภาพ")
         }
-
     }
 
     private fun showRationDialogPermission() {
-        AlertDialog.Builder(this).setMessage("คุณไม่ได้อนุญาตการเข้าถึงข้อมูลอุปกรณ์ของคุณ " +
+        AlertDialog.Builder(this).setMessage("คุณปฎิเสธการเข้าถึงข้อมูลอุปกรณ์ " +
                 "หากต้องการใช้งาน เข้าไปที่ตั้งค่า -> แอปพลิเคชันหัดปลูก -> อนุญาตการเข้าถึง")
             .setPositiveButton("ไปที่ตั้งค่า")
             { _,_ ->
@@ -323,22 +242,32 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
             }.show()
     }
 
-    private fun saveImageToInternalStorage(bitmap: Bitmap):String{
-        val wrapper = ContextWrapper(applicationContext)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        super.onActivityReenter(resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
 
-        var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
-        file = File(file, "${UUID.randomUUID()}.jpg")
+            if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+                if (data != null) {
+                    try {
+                        //the Uri of selected image from phone storage.
+                        val selectedImageFileUri = data.data!!
+                        //!! not be null
 
-        try{
-            val stream : OutputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream)
-            stream.flush()
-            stream.close()
-        }catch (e: IOException) {
-            e.printStackTrace()
+                        iv_user_plant_photo.setImageURI(selectedImageFileUri)
+
+
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                        Toast.makeText(
+                            this@AddPlantActivity,
+                            resources.getString(R.string.err_msg_image_selection_failed),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
-
-        return file.absolutePath
     }
 
     private fun customVesDialog(title: String, itemsList: List<String>, selection: String){
@@ -355,11 +284,26 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
         mCustomListDialog.show()
     }
 
-    companion object{
-        private const val CAMERA = 1
-        private const val GALLERY = 2
+    private fun validateUserPlantDetails(): Boolean {
+        return when{
+            TextUtils.isEmpty(mBinding.etAddPlantName.text.toString().trim() { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_user_plant_name), true)
+                false
+            }
 
-        private const val IMAGE_DIRECTORY = "UserPlantImage"
+            TextUtils.isEmpty(mBinding.etType.text.toString().trim() { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_user_plant_type), true)
+                false
+            }
+
+            else -> {
+                //showErrorSnackBar(resources.getString(R.string.register_successful), false)
+                true
+            }
+        }
     }
+
+
+
 }
 
