@@ -15,6 +15,8 @@ import com.kmitl.mythesis.view.activities.RegisterActivity
 import com.kmitl.mythesis.view.activities.UserProfileActivity
 import com.kmitl.mythesis.models.User
 import com.kmitl.mythesis.utils.Constants
+import com.kmitl.mythesis.view.activities.AddPlantActivity
+
 class FirestoreClass {
 
     private  val mFireStore = FirebaseFirestore.getInstance()
@@ -186,5 +188,10 @@ class FirestoreClass {
                 )
             }
     }
+
+    fun createUserPlantData(activity: Activity, userHashMap: HashMap<String, Any>) {
+
+    }
+
 
 }

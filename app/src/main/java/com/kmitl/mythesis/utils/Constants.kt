@@ -8,7 +8,9 @@ import android.webkit.MimeTypeMap
 import com.google.type.Date
 
 object Constants {
+    //ตาราง
     const val USERS: String = "users"
+    const val USER_PLANT: String = "user_plant"
     const val INFO_VEGETABLES: String = "info_vegetables"
 
     const val MYTEHSIS_PREFERENCE: String   = "MyThesisPrefs"
@@ -17,19 +19,20 @@ object Constants {
     const val READ_STORAGE_PERMISSION_CODE  = 2
     const val PICK_IMAGE_REQUEST_CODE       = 1
 
+    const val GENDER: String    = "gender"
+    const val MALE: String      = "ผู้ชาย"
+    const val FEMALE: String    = "ผู้หญิง"
+    const val LGBTQ: String     = "เพศทางเลือก"
+    const val BIRTHDAY: String  = "birthDay"
+    const val RESIDENT: String  = "residentType"
+    const val HOME: String      = "บ้าน"
+    const val APARTMENT: String = "หอพัก, อพาร์ตเมนท์ หรือ คอนโดมิเนียม"
+    const val NONE: String      = "ยังไม่ได้ระบุ"
 
-    const val MALE: String = "ผู้ชาย"
-    const val FEMALE: String = "ผู้หญิง"
-    const val LGBTQ: String = "LGBTQ+"
-
-    const val BIRTHDAY: String = "birthday"
 
     const val MOBILE: String = "mobile"
-    const val GENDER: String = "gender"
     const val IMAGE: String = "image"
-
     const val COMPLETE_PROFILE: String = "profileCompleted"
-
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
 
     //ข้อมูลผักหน้าค้นหา
@@ -49,7 +52,6 @@ object Constants {
     const val goods_link: String =""
 
     //ข้อมูลผักที่User ปลูก
-    const val USER_ADD_PLANT    = "user_add_plant"
     const val USER_VES_NAME: String ="user_ves_name"
     const val USER_VES_TYPE: String ="user_ves_type"
     const val USER_VES_DATE: String ="user_ves_date"

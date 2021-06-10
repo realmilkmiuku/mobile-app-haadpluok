@@ -41,13 +41,18 @@
     <string name="login_successful">เข้าสู่ระบบสำเร็จ</string>
 
     <string name="err_msg_image_selection_failed">การแสดงรูปผิดพลาด</string>
+    <string name="err_msg_image_upload">กรุณาอัปโหลดรูปภาพผักของคุณ</string>
     <string name="err_msg_user_plant_name">กรุณาระบุชื่อผักของคุณ</string>
+    <string name="err_msg_user_plant_type">กรุณาระบุประเภทผัก</string>
+
+    <string name="msg_user_plant_crete_success">เพิ่มข้อมูลผักเรียบร้อยแล้ว</string>
+
 
 
 
     <!--String  Progress-->
     <string name="please_wait">กำลังประมวลผล&#8230;</string>
-    <string name="msg_profile_update_sucess">อัปเดตข้อมูลโปรไฟล์เรียบร้อยแล้ว</string>
+    <string name="msg_profile_update_success">อัปเดตข้อมูลโปรไฟล์เรียบร้อยแล้ว</string>
 
     <!--String  Profile-->
     <string name="label_profile_username">ชื่อบัญชีผู้ใช้</string>
