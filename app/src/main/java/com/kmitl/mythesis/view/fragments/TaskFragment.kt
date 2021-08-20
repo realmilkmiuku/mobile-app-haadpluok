@@ -14,6 +14,7 @@ import com.kmitl.mythesis.view.activities.AddTaskActivity
 import com.kmitl.mythesis.viewmodel.HomeViewModel
 import com.kmitl.mythesis.viewmodel.TaskViewModel
 
+// To do list
 class TaskFragment : Fragment() {
     private lateinit var taskViewModel: TaskViewModel
 
