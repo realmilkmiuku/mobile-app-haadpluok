@@ -57,8 +57,9 @@ class SearchVeganFragment : BaseFragment() {
 
     fun successVeganListFromFirebase(vegansList: ArrayList<Vegetable>) {
         hideProgressDialog()
+
         rv_vegan_items.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        //rv_my_plant_items.layoutManager = GridLayoutManager(activity, 4)
+        // rv_vegan_items.layoutManager = GridLayoutManager(activity, 4)
         rv_vegan_items.setHasFixedSize(true)
         val adapterVegans               = VegetablesListAdapter(requireActivity(), vegansList, this)
         rv_vegan_items.adapter          = adapterVegans
