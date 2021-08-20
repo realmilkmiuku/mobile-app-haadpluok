@@ -6,12 +6,16 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import com.google.type.Date
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 object Constants {
-    //ตาราง
+    //Collections in Cloud Firestore
     const val USERS: String = "users"
     const val USER_PLANT: String = "user_plant"
     const val INFO_VEGETABLES: String = "info_vegetables"
+    const val INFO_GOODS: String = "info_goods"
 
     const val MYTEHSIS_PREFERENCE: String   = "MyThesisPrefs"
     const val LOGGEN_IN_USERNAME: String    = "logged_in_username"
@@ -29,34 +33,22 @@ object Constants {
     const val APARTMENT: String = "หอพัก, อพาร์ตเมนท์ หรือ คอนโดมิเนียม"
     const val NONE: String      = "ยังไม่ได้ระบุ"
 
-
     const val MOBILE: String = "mobile"
     const val IMAGE: String = "image"
     const val COMPLETE_PROFILE: String = "profileCompleted"
     const val USER_PROFILE_IMAGE:String = "User_Profile_Image"
 
-    //ข้อมูลผักหน้าค้นหา
-    const val ves_name: String =""
-    const val ves_details: String =""
-    const val ves_details_size: String =""
-    const val ves_details_how: String =""
-    const val ves_details_water_sun: String =""
-    const val ves_details_crop: String =""
-    const val ves_details_time_crop: String =""
-    const val ves_pic: String =""
+    const val USER_ID: String = "user_id"
 
-    //ข้อมูลสินค้า
-    const val goods_name: String =""
-    const val goods_price: String =""
-    const val goods_details: String =""
-    const val goods_link: String =""
 
-    //ข้อมูลผักที่User ปลูก
-    const val USER_VES_NAME: String ="user_ves_name"
-    const val USER_VES_TYPE: String ="user_ves_type"
-    const val USER_VES_DATE: String ="user_ves_date"
-    const val USER_VES_DES: String ="user_ves_des"
-
+    //User Plant
+    const val EXTRA_PLANT_ID: String    = "extra_plant_id"
+    const val EXTRA_PLANT_DETAILS: String    = "extra_plant_details"
+    const val PLANT_IMG: String ="plantImg"
+    const val PLANT_TYPE: String ="plantType"
+    const val PLANT_NAME: String ="plantName"
+    const val PLANT_BDAY: String ="plantBday"
+    const val PLANT_DES: String ="plantDes"
     fun plantType():ArrayList<String>{
         val list = ArrayList<String>()
         list.add("กะเพรา")
@@ -70,6 +62,16 @@ object Constants {
         list.add("มะกรูด")
         return list
     }
+
+    //ข้อมูลผักหน้าค้นหา
+    const val ves_name: String =""
+
+    //ข้อมูลสินค้า
+    const val goods_name: String =""
+    const val goods_price: String =""
+    const val goods_details: String =""
+    const val goods_link: String =""
+
 
     //ข้อมูลการสร้าง To do list
     const val todolist_name: String =""

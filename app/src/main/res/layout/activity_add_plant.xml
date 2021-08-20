@@ -1,55 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
     tools:context=".view.activities.AddPlantActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_add_plant"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green3"
+        android:elevation="@dimen/shadow_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/bar_marginTop"
-        android:orientation="vertical">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:rowCount="1"
             android:columnCount="3"
-            android:layout_marginStart="@dimen/marginSide"
-            android:layout_marginEnd="@dimen/marginSide"
-            >
+            android:layout_marginEnd="@dimen/marginSide"  >
 
-            <ImageView
-                android:id="@+id/ic_back"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_back"
-                android:layout_gravity="center_vertical"
-                />
-
-            <com.kmitl.mythesis.utils.HPTextSemiBold
+            <com.kmitl.mythesis.utils.HPTextRegular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/btw_marginStart"
                 android:text="@string/headbar_add_plant"
                 android:textSize="@dimen/titlebar_textSize"
-                android:textColor="@color/PrimaryText"/>
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical" />
 
             <View
                 android:layout_width="0dp"
@@ -62,16 +46,38 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/ic_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
                 android:text="@string/tv_save"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/btn_tv_textSize" />
         </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_add_plant">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.kmitl.mythesis.utils.HPEditText
                 android:id="@+id/et_add_plant_name"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:layout_marginTop="@dimen/et_paddingTop"
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="60dp"
                 android:maxLines="1"
@@ -80,6 +86,7 @@
                 android:hint="@string/et_add_plant_name"
                 android:textSize="@dimen/titlebar_textSize"
                 android:textColor="@color/PrimaryText"
+                android:textStyle=""
                 />
 
             <FrameLayout
@@ -116,124 +123,125 @@
 
             </FrameLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:orientation="vertical">
+
+            <!-- TODO: add User's plants -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:background="@color/light_grey"
-                android:orientation="vertical">
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:rowCount="1">
 
-                <!-- TODO: add User's plants -->
-                <LinearLayout
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/marginSide"
+                    android:src="@drawable/ic_plant_name"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/et_type"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_arrow_selected_menu"
+                    android:layout_marginStart="@dimen/btw_marginStart"
+                    android:layout_marginEnd="@dimen/marginSide"
                     android:background="@color/white"
-                    android:columnCount="3"
-                    android:orientation="horizontal"
-                    android:rowCount="1">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/marginSide"
-                        android:src="@drawable/ic_plant_name"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <com.kmitl.mythesis.utils.HPTextRegular
-                        android:id="@+id/et_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/ic_arrow_selected_menu"
-                        android:layout_marginStart="@dimen/btw_marginStart"
-                        android:layout_marginEnd="@dimen/marginSide"
-                        android:background="@color/white"
-                        android:drawablePadding="10dp"
-                        android:gravity="left"
-                        android:layout_gravity="center_vertical"
-                        android:hint="@string/title_select_ves_type"
-                        android:inputType="text"
-                        android:textColor="@color/PrimaryText"
-                        android:textSize="@dimen/content_textSize"
-                        />
-
-                </LinearLayout>
-
-                <!-- TODO: add Birthday of plant -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    android:rowCount="1"
-                    android:columnCount="3"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/white"
-                    >
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="20dp"
-                        android:src="@drawable/ic_plant_bday"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <com.kmitl.mythesis.utils.HPButton
-                        android:id="@+id/btn_et_add_plant_bday"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="@dimen/btw_marginStart"
-                        android:background="@null"
-                        android:hint="@string/hint_profile_bday"
-                        android:inputType="date"
-                        android:textSize="@dimen/et_size"
-                        android:textColor="@color/PrimaryText"
-                        android:gravity="center_vertical"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        />
-
-                </LinearLayout>
-
-                <!-- TODO: add User's plant desc -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    android:rowCount="1"
-                    android:columnCount="2"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/white"
-                    >
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/marginSide"
-                        android:src="@drawable/ic_plant_des"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                        <com.kmitl.mythesis.utils.HPEditText
-                            android:id="@+id/et_add_plant_des"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/btw_marginStart"
-                            android:layout_marginEnd="@dimen/margin20"
-                            android:background="@android:color/transparent"
-                            android:hint="@string/desc"
-                            android:inputType="text"
-                            android:textColor="@color/PrimaryText"
-                            android:textSize="@dimen/content_textSize"
-                            />
-
-                </LinearLayout>
+                    android:drawablePadding="10dp"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:hint="@string/title_select_ves_type"
+                    android:inputType="text"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="@dimen/content_textSize"
+                    />
             </LinearLayout>
-    </LinearLayout>
+
+            <!-- TODO: add Birthday of plant -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="3"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/marginSide"
+                    android:src="@drawable/ic_plant_bday"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <com.kmitl.mythesis.utils.HPButton
+                    android:id="@+id/btn_et_add_plant_bday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="@dimen/btw_marginStart"
+                    android:background="@null"
+                    android:hint=""
+                    android:inputType="date"
+                    android:textSize="@dimen/et_size"
+                    android:textColor="@color/PrimaryText"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <!-- TODO: add User's plant desc -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="2"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/marginSide"
+                    android:src="@drawable/ic_plant_des"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <com.kmitl.mythesis.utils.HPEditText
+                    android:id="@+id/et_add_plant_des"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/btw_marginStart"
+                    android:layout_marginEnd="@dimen/margin20"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_vertical"
+                    android:hint="@string/desc"
+                    android:inputType="text"
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="@dimen/content_textSize"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </LinearLayout>
 
     </ScrollView>
-    </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

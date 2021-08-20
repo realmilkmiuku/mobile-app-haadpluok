@@ -26,29 +26,5 @@ class GameMyPlantActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val imageOne = findViewById<ImageView>(R.id.image_one)
-        val imageTwo = findViewById<ImageView>(R.id.image_two)
-        val imageThree = findViewById<ImageView>(R.id.image_three)
-
-        Glide.with(this)
-            .load(image)
-            .into(imageOne)
-
-        Glide.with(this)
-            .load(image)
-            .fitCenter()
-            .circleCrop()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(R.drawable.img_bg_placeholder)
-            .into(imageTwo)
-
-        Glide.with(this)
-            .load(image)
-            .override(300,400)
-            .centerCrop()
-            .error(R.drawable.img_bg_placeholder)
-            .into(imageThree)
-
-
     }
 }

@@ -5,7 +5,7 @@ import com.google.type.Date
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class User (
+data class User (
     val id: String ="",
     val userName: String ="",
     val email: String ="",

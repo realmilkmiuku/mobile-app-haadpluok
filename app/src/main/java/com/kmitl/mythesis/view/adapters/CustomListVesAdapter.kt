@@ -14,8 +14,8 @@ class CustomListVesAdapter (
     : RecyclerView.Adapter<CustomListVesAdapter.ViewHolder>(){
 
     class ViewHolder(view: VesCustomListBinding): RecyclerView.ViewHolder(view.root){
-            val tvText = view.tvText
-        }
+        val tvText = view.tvText
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: VesCustomListBinding = VesCustomListBinding

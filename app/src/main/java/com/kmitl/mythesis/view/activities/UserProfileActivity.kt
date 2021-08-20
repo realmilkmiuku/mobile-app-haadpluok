@@ -8,14 +8,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.kmitl.mythesis.R
 import com.kmitl.mythesis.firestore.FirestoreClass
 import com.kmitl.mythesis.models.User
@@ -40,6 +35,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             mUserDetails = intent.getParcelableExtra<User>(Constants.EXTRA_USER_DETAILS)!!
         }
+
         val date = getCurrentDateTime()
         val currentDate = date.toString("dd/MM/yyyy")
         btn_et_pick_date.setHint(currentDate)
@@ -94,7 +90,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                         showProgressDialog(resources.getString(R.string.please_wait))
 
                         if(mSelectedImageFileUri != null)
-                        FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri)
+                        FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri, Constants.USER_PROFILE_IMAGE)
                         else {
                             updateUserProfileDetails()
                         }
@@ -153,7 +149,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 Toast.LENGTH_SHORT
         ).show()
 
-        startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
+        startActivity(Intent(this@UserProfileActivity, BottomNavActivity::class.java))
         finish()
 
     }
@@ -165,7 +161,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         val dateBday = DatePickerDialog(this ,
-            { view, year, month, dayOfMonth ->
+            { _, year, month, dayOfMonth ->
                 //Display selected date in TextView
                 btn_et_pick_date.setText("" + dayOfMonth + "/" + (month.toInt() + 1) + "/" + year)
             }, year, month, day)
@@ -173,12 +169,12 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+    private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
         val formatter = SimpleDateFormat(format, locale)
         return formatter.format(this)
     }
 
-    fun getCurrentDateTime(): Date {
+    private fun getCurrentDateTime(): Date {
         return Calendar.getInstance().time
     }
 
@@ -212,11 +208,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 if (data != null) {
                     try {
                         //the Uri of selected image from phone storage.
-                        val selectedImageFileUri = data.data!!
+                        mSelectedImageFileUri = data.data!!
                         //!! not be null
 
                         //iv_user_photo.setImageURI(selectedImageFileUri)
-                        GlideLoader(this).loadUserPicture(selectedImageFileUri, iv_user_photo)
+                        GlideLoader(this).loadUserPicture(mSelectedImageFileUri!!, iv_user_photo)
 
                     } catch (e: IOException) {
                         e.printStackTrace()

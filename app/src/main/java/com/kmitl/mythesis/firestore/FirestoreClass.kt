@@ -5,17 +5,22 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.kmitl.mythesis.view.activities.LoginActivity
-import com.kmitl.mythesis.view.activities.RegisterActivity
-import com.kmitl.mythesis.view.activities.UserProfileActivity
+import com.kmitl.mythesis.models.Goods
+import com.kmitl.mythesis.models.Plant
 import com.kmitl.mythesis.models.User
+import com.kmitl.mythesis.models.Vegetable
 import com.kmitl.mythesis.utils.Constants
-import com.kmitl.mythesis.view.activities.AddPlantActivity
+import com.kmitl.mythesis.view.activities.*
+import com.kmitl.mythesis.view.fragments.AllPlantFragment
+import com.kmitl.mythesis.view.fragments.HomeFragment
+import com.kmitl.mythesis.view.fragments.SearchFragment
+import com.kmitl.mythesis.view.fragments.SearchVeganFragment
 
 class FirestoreClass {
 
@@ -145,9 +150,9 @@ class FirestoreClass {
            }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?) {
+    fun uploadImageToCloudStorage(activity: Activity, imageFileURI: Uri?, imageType: String) {
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
-            Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "."
+            imageType + System.currentTimeMillis() + "."
             + Constants.getFileExtension(
                 activity,
                 imageFileURI
@@ -169,6 +174,10 @@ class FirestoreClass {
                         is UserProfileActivity -> {
                             activity.imageUploadSuccess(uri.toString())
                         }
+
+                        is AddPlantActivity -> {
+                            activity.imageUploadSuccess(uri.toString())
+                        }
                     }
                 }
         }
@@ -177,6 +186,10 @@ class FirestoreClass {
                 //Hide the progress dialog if there is any error.And print the error in log.
                 when(activity) {
                     is UserProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+
+                    is AddPlantActivity -> {
                         activity.hideProgressDialog()
                     }
                 }
@@ -189,9 +202,163 @@ class FirestoreClass {
             }
     }
 
-    fun createUserPlantData(activity: Activity, userHashMap: HashMap<String, Any>) {
+    fun uploadUserPlantData(activity: AddPlantActivity, plantInfo: Plant) {
+        mFireStore.collection(Constants.USER_PLANT)
+            .document()
+            .set(plantInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                //Here call a function of base activity for transferring the result to it
+                activity.userPlantUploadSuccess()
+            }
+            .addOnFailureListener { e ->
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Oops! เกิดข้อผิดพลาดในการอัปโหลดข้อมูลผักของคุณ",
+                    e
+                )
+            }
+    }
+
+    fun getPlantsList(fragment: Fragment) {
+        mFireStore.collection(Constants.USER_PLANT)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Plant List", document.documents.toString())
+                val plantsList: ArrayList<Plant> = ArrayList()
+                for (i in document.documents) {
+
+                    val plant = i.toObject(Plant::class.java)
+                    plant!!.plant_id = i.id
+
+                    // for each plant
+                    plantsList.add(plant)
+                }
+
+                when(fragment){
+                    is HomeFragment  -> {
+                        fragment.successPlantsListFromFirebase(plantsList)
+                    }
+
+                    is AllPlantFragment -> {
+                        fragment.successPlantsListFromFirebase(plantsList)
+                    }
+
+                }
+            }
+    }
+
+    fun getPlantDetails(activity: Activity, plant_id: String){
+        mFireStore.collection(Constants.USER_PLANT)
+            .document(plant_id)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(activity.javaClass.simpleName, document.toString())
+                val plant = document.toObject(Plant::class.java)
+                if (plant != null) {
+
+                    when (activity) {
+                        is PlantDetailsActivity -> {
+                            activity.plantDetailsSuccess(plant)
+                        }
+
+                    }
+
+                }
+            }
+            .addOnFailureListener {
+                e ->
+                when (activity) {
+                    is PlantDetailsActivity -> {
+                        activity.hideProgressDialog()
+                    }
+
+                }
+                Log.e(activity.javaClass.simpleName, "Error while getting the plant details", e)
+            }
+    }
+
+    fun deletePlant(fragment: AllPlantFragment, plant_id: String){
+        mFireStore.collection(Constants.USER_PLANT)
+            .document(plant_id)
+            .delete()
+            .addOnSuccessListener {
+
+                fragment.plantDeleteSuccess()
+
+            }.addOnFailureListener {
+                e ->
+
+                //Hide the progress dialog if there is an error.
+                fragment.hideProgressDialog()
+
+                Log.e(
+                    fragment.requireActivity().javaClass.simpleName,
+                    "Error while deleting the plant",
+                    e
+                )
+            }
+    }
+
+    fun getVegansList(fragment: Fragment) {
+        mFireStore.collection(Constants.INFO_VEGETABLES)
+            .orderBy("ve_name")
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Vegetable List", document.documents.toString())
+                val vegetablesList: ArrayList<Vegetable> = ArrayList()
+                for (i in document.documents) {
+
+                    val v = i.toObject(Vegetable::class.java)
+                        v!!.ve_id = i.id
+
+                    // for each plant
+                    vegetablesList.add(v)
+                }
+
+                when(fragment){
+                    is SearchFragment  -> {
+                        fragment.successVeganListFromFirebase(vegetablesList)
+                    }
+
+                    is SearchVeganFragment -> {
+                        fragment.successVeganListFromFirebase(vegetablesList)
+                    }
+                }
+
+            }
 
     }
+
+    fun getGoodsList(fragment: Fragment) {
+        mFireStore.collection(Constants.INFO_GOODS)
+            .orderBy("goods_name")
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("Goods List", document.documents.toString())
+                val goodsList: ArrayList<Goods> = ArrayList()
+                for (i in document.documents) {
+
+                    val g = i.toObject(Goods::class.java)
+                    g!!.goods_id = i.id
+
+                    // for each plant
+                    goodsList.add(g)
+                }
+
+                when(fragment){
+                    is SearchFragment  -> {
+                        fragment.successGoodListFromFirebase(goodsList)
+                    }
+                }
+
+            }
+
+    }
+
 
 
 }

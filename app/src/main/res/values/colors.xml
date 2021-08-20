@@ -5,14 +5,15 @@
 
     <!--   <color name="colorPrimary">#1E1E1E</color> -->
 
-    <color name="yellow">#f8b663</color>
-    <color name="yellow2">#FFB208</color>
+    <color name="light_yellow">#ffdd87</color>
+    <color name="yellow">#FFCE54</color>
+    <color name="yellow2">#F6BB42</color>
     <color name="greenMain">#29CC5A</color>
 
     <color name="green2">#1CB053</color>
-    <color name="green3">#00A14B</color>
-    <color name="green4">#44B053</color>
-    <color name="light_green">#63b983</color>
+    <color name="green3">#8CC152</color>
+    <color name="green4">#78ae3e</color>
+    <color name="light_green">#f6faf1</color>
     63b983
 
     <color name="white">#FFFFFF</color>

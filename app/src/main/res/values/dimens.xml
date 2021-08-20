@@ -34,7 +34,7 @@
     <dimen name="profile_box_marginTop">5dp</dimen>
 
     <dimen name="profile_tv_width">100dp</dimen>
-    <dimen name="marginSide">20dp</dimen>
+    <dimen name="marginSide">15dp</dimen>
     <dimen name="profile_tv">16sp</dimen>
     <dimen name="et_size">16sp</dimen>
     <dimen name="profile_et_padding">10dp</dimen>
@@ -49,26 +49,55 @@
     <dimen name="btn_radio_size_res">35dp</dimen>
     <dimen name="rd_space_res">20dp</dimen>
 
-    <dimen name="titlebar_textSize">21sp</dimen>
+
+    <dimen name="shadow_toolbar">15dp</dimen>
+    <dimen name="titlebar_textSize">24sp</dimen>
     <dimen name="addName_textSize">21sp</dimen>
     <dimen name="title_textSize">18sp</dimen>
     <dimen name="content_textSize">16sp</dimen>
     <dimen name="subcontent_textSize">14sp</dimen>
     <dimen name="viewcard_textSize">14sp</dimen>
     <dimen name="btn_tv_textSize">16sp</dimen>
+    <dimen name="btn_delete">70dp</dimen>
+
+    <dimen name="title_plant_name_textSize">24sp</dimen>
+    <dimen name="tag_textSize">12sp</dimen>
+    <dimen name="cr_textSize">14sp</dimen>
+
+    <dimen name="section_marginTop">7dp</dimen>
+    <dimen name="plant_in_circle">75dp</dimen>
+    <dimen name="padding_card">5dp</dimen>
+    <dimen name="w_card_to_search">240dp</dimen>
+    <dimen name="h_card_to_search">80dp</dimen>
+
+    <dimen name="frame_card_margin">5dp</dimen>
 
     <dimen name="search_box">14sp</dimen>
 
     <dimen name="temp">32sp</dimen>
-    <dimen name="fragment_margin25">25dp</dimen>
+    <dimen name="fragment_marginSide">15dp</dimen>
     <dimen name="fragment_marginTopDown">15dp</dimen>
     <dimen name="bar_marginTop">5dp</dimen>
     <dimen name="margin10">10dp</dimen>
     <dimen name="margin20">20dp</dimen>
     <dimen name="ic_size30">30dp</dimen>
     <dimen name="ic_size20">20dp</dimen>
-    <dimen name="viewcard_img_size">110dp</dimen>
+    <dimen name="ic_back">25dp</dimen>
+    <dimen name="viewcard_img_size">200dp</dimen>
     <dimen name="viewcard_img_marginTopDown">15dp</dimen>
+
+
+    <dimen name="full_bg_round">87dp</dimen>
+    <dimen name="marginTop_full_bg_round">7dp</dimen>
+    <dimen name="marginTop_half_bg_round">287dp</dimen>
+
+    <dimen name="filterSide">10dp</dimen>
+    <dimen name="w_card_product">200dp</dimen>
+    <dimen name="h_card_product">85dp</dimen>
+    <dimen name="img_card_product_suggest">80dp</dimen>
+
+    <dimen name="card_marginTop">25dp</dimen>
+
 
     <dimen name="ic_profile_size">40dp</dimen>
 

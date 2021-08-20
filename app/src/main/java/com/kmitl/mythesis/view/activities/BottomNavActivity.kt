@@ -8,15 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kmitl.mythesis.R
-import com.kmitl.mythesis.models.AddPlant
-import com.kmitl.mythesis.models.User
 import com.kmitl.mythesis.utils.Constants
-import com.kmitl.mythesis.utils.Constants.ves_name
-import com.kmitl.mythesis.view.fragments.HomeFragment
-import com.kmitl.mythesis.view.fragments.ProfileFragment
-import com.kmitl.mythesis.view.fragments.SearchFragment
-import com.kmitl.mythesis.view.fragments.TaskFragment
-import kotlinx.android.synthetic.main.activity_user_profile.*
+import com.kmitl.mythesis.view.fragments.*
 
 class BottomNavActivity : AppCompatActivity() {
     private lateinit var tv_main : TextView
@@ -24,6 +17,7 @@ class BottomNavActivity : AppCompatActivity() {
     lateinit var todolistFragment: TaskFragment
     lateinit var searchFragment: SearchFragment
     lateinit var profileFragment: ProfileFragment
+    lateinit var allPlantFragment: AllPlantFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +31,7 @@ class BottomNavActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences(Constants.MYTEHSIS_PREFERENCE, Context.MODE_PRIVATE)
         val username = sharedPreferences.getString(Constants.LOGGEN_IN_USERNAME, " ")!!
         tv_main.text = "Hello $username."
+
 
         homeFragment = HomeFragment()
         supportFragmentManager
@@ -86,5 +81,6 @@ class BottomNavActivity : AppCompatActivity() {
 
             true
         }
+
     }
 }

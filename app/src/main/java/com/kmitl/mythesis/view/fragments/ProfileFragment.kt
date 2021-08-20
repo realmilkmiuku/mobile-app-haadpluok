@@ -39,6 +39,7 @@ class ProfileFragment : Fragment() {
 
         val btn_logout = root.findViewById<TextView>(R.id.btn_logout)
         btn_logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             val intent=Intent(activity, LoginActivity::class.java)
             startActivity(intent)
         }

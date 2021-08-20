@@ -4,60 +4,42 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.karumi.dexter.Dexter
 import com.kmitl.mythesis.R
 import com.kmitl.mythesis.databinding.ActivityAddPlantBinding
-import com.kmitl.mythesis.databinding.DialogCustomImgSelectionBinding
-import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.provider.MediaStore
 import android.provider.Settings
 import android.text.TextUtils
-import android.util.Log
+
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.karumi.dexter.listener.single.PermissionListener
+
 import com.kmitl.mythesis.databinding.DialogCustomVeslistBinding
 import com.kmitl.mythesis.firestore.FirestoreClass
+import com.kmitl.mythesis.models.Plant
 import com.kmitl.mythesis.utils.Constants
 import com.kmitl.mythesis.utils.GlideLoader
 import com.kmitl.mythesis.view.adapters.CustomListVesAdapter
+import com.kmitl.mythesis.view.adapters.VegetablesListAdapter
 import kotlinx.android.synthetic.main.activity_add_plant.*
+import kotlinx.android.synthetic.main.activity_add_plant.iv_camera
+import kotlinx.android.synthetic.main.activity_add_plant.iv_user_plant_photo
+import kotlinx.android.synthetic.main.activity_plant_details.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
-import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
-import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddPlantActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mBinding: ActivityAddPlantBinding
-    private var mPlantImageUri : String = ""
+    private var mPlantImageURI : String = ""
     private var mSelectedImageFileUri: Uri? = null
     private  lateinit var mCustomListDialog: Dialog
 
@@ -68,13 +50,17 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
         mBinding = ActivityAddPlantBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        mBinding.icBack.setOnClickListener(this)
+        setActionBar()
+
+        val date = getCurrentDateTime()
+        val currentDate = date.toString("dd/MM/yyyy")
+        mBinding.btnEtAddPlantBday.setHint(currentDate)
+
         mBinding.etAddPlantName.setOnClickListener(this)
         mBinding.ivCamera.setOnClickListener(this)
         mBinding.etType.setOnClickListener(this)
         mBinding.btnEtAddPlantBday.setOnClickListener(this)
         mBinding.etAddPlantDes.setOnClickListener(this)
-        mBinding.btnSaveAddPlant.setOnClickListener(this)
 
     }
 
@@ -109,31 +95,22 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
                             Constants.READ_STORAGE_PERMISSION_CODE
                         )
                     }
-                    return
                 }
 
                 R.id.btn_et_add_plant_bday -> {
                     pickBirthDay()
-                    return
                 }
 
                 R.id.et_type -> {
                     customVesDialog(resources.getString(R.string.title_select_ves_type),
                     Constants.plantType(),
-                    Constants.USER_VES_TYPE
+                    Constants.PLANT_TYPE
                     )
-                    return
                 }
 
                 R.id.btn_save_add_plant -> {
                     if(validateUserPlantDetails()) {
-                        showProgressDialog(resources.getString(R.string.please_wait))
-
-                        if(mSelectedImageFileUri != null)
-                            FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri)
-                        else {
-                            createUserPlant()
-                        }
+                        uploadPlantImage()
                     }
                 }
 
@@ -141,31 +118,56 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun createUserPlant() {
-        //<key = string, any =obj>
-        val userHashMap = HashMap<String, Any>()
+    private fun setActionBar() {
 
-        val nPlant      = mBinding.etAddPlantName.text.toString().trim { it <= ' ' }
-        val typePlant   = mBinding.etType.text.toString().trim { it <= ' ' }
-        val bDayPlant   = mBinding.btnEtAddPlantBday.text.toString().trim { it <= ' ' }
-        val desPlant    = mBinding.etAddPlantDes.text.toString().trim { it <= ' ' }
+        setSupportActionBar(toolbar_add_plant)
 
-        if(mPlantImageUri.isNotEmpty()) {
-            userHashMap[Constants.IMAGE] = mPlantImageUri
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_white)
         }
 
-        userHashMap[Constants.USER_VES_NAME]    = nPlant
-        userHashMap[Constants.USER_VES_TYPE]    = typePlant
-        userHashMap[Constants.USER_VES_DATE]    = bDayPlant
-        userHashMap[Constants.USER_VES_DES]     = desPlant
-
-        userHashMap[Constants.COMPLETE_PROFILE] = 1
-        //showProgressDialog(resources.getString(R.string.please_wait))
-
-        FirestoreClass().createUserPlantData(this, userHashMap)
+        mBinding.toolbarAddPlant.setNavigationOnClickListener { onBackPressed() }
+        mBinding.btnSaveAddPlant.setOnClickListener(this)
     }
 
-    fun createUserPlantSuccess() {
+    private fun uploadPlantImage() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri, Constants.PLANT_IMG)
+
+    }
+
+    fun imageUploadSuccess(imageURL: String) {
+        //hideProgressDialog()
+        //showErrorSnackBar("อัปโหลดรูปผักสำเร็จ : $imageURL", false)
+
+        mPlantImageURI = imageURL
+        uploadUserPlantDetails()
+
+    }
+
+    private fun uploadUserPlantDetails() {
+        val username = this.getSharedPreferences(
+            Constants.MYTEHSIS_PREFERENCE, Context.MODE_PRIVATE)
+            .getString(Constants.LOGGEN_IN_USERNAME, "")!!
+
+        val userPlant = Plant(
+            FirestoreClass().getCurrentUserID(),
+            username,
+            mBinding.etAddPlantName.text.toString().trim { it <= ' ' },
+            mBinding.etType.text.toString().trim { it <= ' ' },
+            mBinding.btnEtAddPlantBday.text.toString().trim { it <= ' ' },
+            mBinding.etAddPlantDes.text.toString().trim { it <= ' ' },
+            mPlantImageURI
+        )
+
+
+
+        FirestoreClass().uploadUserPlantData(this, userPlant)
+    }
+
+    fun userPlantUploadSuccess() {
         hideProgressDialog()
 
         Toast.makeText(
@@ -174,7 +176,7 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
             Toast.LENGTH_SHORT
         ).show()
 
-        startActivity(Intent(this@AddPlantActivity, MainActivity::class.java))
+        //startActivity(Intent(this@AddPlantActivity, BottomNavActivity::class.java))
         finish()
 
     }
@@ -187,17 +189,28 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         val dateBday = DatePickerDialog(this ,
-                { view, year, month, dayOfMonth ->
+                { _, year, month, dayOfMonth ->
                     //Display selected date in TextView
                     mBinding.btnEtAddPlantBday.setText("" + dayOfMonth + "/" + (month.toInt() + 1) + "/" + year)
                 }, year, month, day)
             dateBday.show()
 
+        var dateBirthday: DatePickerDialog = dateBday
+
+    }
+
+    private fun java.util.Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    private fun getCurrentDateTime(): java.util.Date {
+        return Calendar.getInstance().time
     }
 
     fun selectedListItem(item: String, selection: String){
         when(selection){
-            Constants.USER_VES_TYPE ->{
+            Constants.PLANT_TYPE ->{
                 mCustomListDialog.dismiss()
                 mBinding.etType.setText(item)
             }
@@ -251,10 +264,12 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
                 if (data != null) {
                     try {
                         //the Uri of selected image from phone storage.
-                        val selectedImageFileUri = data.data!!
+                        mSelectedImageFileUri = data.data!!
                         //!! not be null
 
-                        iv_user_plant_photo.setImageURI(selectedImageFileUri)
+                        //iv_user_plant_photo.setImageURI(selectedImageFileUri)
+                        iv_camera.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit))
+                        GlideLoader(this).loadAddPlantPicture(mSelectedImageFileUri!!, iv_user_plant_photo)
 
 
                     } catch (e: IOException) {
@@ -297,11 +312,12 @@ class AddPlantActivity : BaseActivity(), View.OnClickListener {
             }
 
             else -> {
-                //showErrorSnackBar(resources.getString(R.string.register_successful), false)
+
                 true
             }
         }
     }
+
 
 
 

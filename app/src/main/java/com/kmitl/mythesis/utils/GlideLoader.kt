@@ -24,4 +24,50 @@ class GlideLoader(val context: Context) {
             e.printStackTrace()
         }
     }
+
+    fun loadAddPlantPicture(imageURI: Uri, imageView: ImageView) {
+        try {
+            // Load the user image in the ImageView.
+            Glide
+                .with(context)
+                .load(imageURI)
+                .override(400,400)
+                .centerCrop()
+                .placeholder(R.drawable.img_plant_placeholder)
+                .into(imageView)
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun loadPlantPicture(image: Any, imageView: ImageView) {
+        try {
+            // Load the user image in the ImageView.
+            Glide
+                .with(context)
+                .load(image)
+                //.override(400,400)
+                .centerCrop()
+                .into(imageView)
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun loadPlantPictureCircle(image: Any, imageView: ImageView) {
+        try {
+            // Load the user image in the ImageView.
+            Glide
+                .with(context)
+                .load(image)
+                .fitCenter() // Scale type of the image
+                .circleCrop()
+                .into(imageView)
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
 }

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context=".view.activities.PlantDetailsActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_plant_details"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/green3"
+            android:elevation="@dimen/shadow_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:rowCount="1"
+                android:columnCount="3"
+                android:layout_marginEnd="@dimen/marginSide"  >
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/headbar_plant"
+                    android:textSize="@dimen/titlebar_textSize"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/btn_delete_plant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:text="@string/tv_delete"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/btn_tv_textSize" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_plant_details">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.kmitl.mythesis.utils.HPTextSemiBold
+                    android:id="@+id/tv_plant_name_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="@dimen/et_paddingTop"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginEnd="60dp"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/title_plant_name_textSize"
+                    android:textColor="@color/PrimaryText"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/fil_img"
+                    android:layout_width="@dimen/profile_user_plant_image_size"
+                    android:layout_height="@dimen/profile_user_plant_image_size"
+                    android:layout_marginTop="@dimen/image_marginTop"
+                    android:layout_marginBottom="@dimen/image_marginTop"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_user_plant_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_plant_placeholder"
+                        android:scaleType="fitXY"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/img_bg_placeholder"
+                        />
+
+                    <ImageView
+                        android:id="@+id/iv_camera"
+                        android:layout_width="@dimen/ic_size30"
+                        android:layout_height="@dimen/ic_size30"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginEnd="@dimen/margin10"
+                        android:layout_marginBottom="@dimen/margin10" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/light_grey"
+                    android:orientation="vertical">
+
+                    <!-- TODO: User's plants -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
+                        android:rowCount="1"
+                        android:columnCount="3"
+                        android:orientation="horizontal"
+                        android:background="@color/white"
+                        >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/marginSide"
+                            android:src="@drawable/ic_plant_name"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <com.kmitl.mythesis.utils.HPTextRegular
+                            android:id="@+id/tv_type_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_arrow_selected_menu"
+                            android:layout_marginStart="@dimen/btw_marginStart"
+                            android:layout_marginEnd="@dimen/marginSide"
+                            android:background="@color/white"
+                            android:drawablePadding="10dp"
+                            android:gravity="left"
+                            android:editable="false"
+                            android:layout_gravity="center_vertical"
+                            android:hint="@string/title_select_ves_type"
+                            android:inputType="text"
+                            android:textColor="@color/PrimaryText"
+                            android:textSize="@dimen/content_textSize"
+                            />
+
+                    </LinearLayout>
+
+                    <!-- TODO: Birthday of plant -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:rowCount="1"
+                        android:columnCount="3"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white"
+                        >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/marginSide"
+                            android:src="@drawable/ic_plant_bday"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <com.kmitl.mythesis.utils.HPButton
+                            android:id="@+id/tv_plant_bday_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="@dimen/btw_marginStart"
+                            android:background="@null"
+                            android:inputType="date"
+                            android:clickable="false"
+                            android:textSize="@dimen/et_size"
+                            android:textColor="@color/PrimaryText"
+                            android:gravity="center_vertical"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            />
+
+                    </LinearLayout>
+
+                    <!-- TODO: User's plant desc -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:rowCount="1"
+                        android:columnCount="2"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white"
+                        >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/marginSide"
+                            android:src="@drawable/ic_plant_des"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <com.kmitl.mythesis.utils.HPTextRegular
+                            android:id="@+id/tv_plant_des_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/btw_marginStart"
+                            android:layout_marginEnd="@dimen/margin20"
+                            android:background="@android:color/transparent"
+                            android:layout_gravity="center_vertical"
+                            android:editable="false"
+                            android:textColor="@color/PrimaryText"
+                            android:textSize="@dimen/content_textSize"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+</RelativeLayout>

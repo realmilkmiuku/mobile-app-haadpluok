@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kmitl.mythesis">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"
-        />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -16,19 +16,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyThesis">
-
+        <activity android:name=".view.activities.GoodsInfoActivity"></activity>
+        <activity android:name=".view.activities.VesInfoDetailsActivity" />
+        <activity android:name=".view.activities.VesInfoActivity" />
+        <activity
+            android:name=".view.activities.EditPlantActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.PlantDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.GameMyPlantActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyThesis.NoActionBar"/>
+            android:theme="@style/Theme.MyThesis.NoActionBar" />
         <activity
             android:name=".view.activities.AddPlantActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyThesis.NoActionBar"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.AddTaskActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyThesis.NoActionBar"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.BottomNavActivity"
             android:screenOrientation="portrait"
@@ -55,6 +61,7 @@
             android:theme="@style/Theme.MyThesis.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

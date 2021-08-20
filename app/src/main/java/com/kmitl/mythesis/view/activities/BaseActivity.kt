@@ -1,6 +1,7 @@
 package com.kmitl.mythesis.view.activities
 
 import android.app.Dialog
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -62,4 +63,5 @@ open class BaseActivity : AppCompatActivity() {
         mProgressDialog.dismiss()
     }
 
+    open fun onClick(view: View?) {}
 }

@@ -48,11 +48,17 @@
     <string name="msg_user_plant_crete_success">เพิ่มข้อมูลผักเรียบร้อยแล้ว</string>
 
 
-
-
     <!--String  Progress-->
     <string name="please_wait">กำลังประมวลผล&#8230;</string>
     <string name="msg_profile_update_success">อัปเดตข้อมูลโปรไฟล์เรียบร้อยแล้ว</string>
+
+
+    <!--String  Confirm Dialog-->
+    <string name="msg_plant_delete_success">ลบข้อมูลผักให้แล้วเด้อจ้า</string>
+    <string name="delete_dialog_title">ลบข้อมูล</string>
+    <string name="delete_dialog_msg">แน่ใจว่าจะลบข้อมูลผัก</string>
+    <string name="yes">ยืนยัน</string>
+    <string name="no">ยกเลิก</string>
 
     <!--String  Profile-->
     <string name="label_profile_username">ชื่อบัญชีผู้ใช้</string>
@@ -64,7 +70,6 @@
     <string name="label_social_connected">เชื่อมต่อบัญชี Social media</string>
     <string name="label_fb">Facebook</string>
     <string name="label_social_gg">Google</string>
-    <string name="hint_profile_bday"> 5 พฤษภาคม 2021 </string>
 
     <string name="rd_lbl_male">ชาย</string>
     <string name="rd_lbl_female">หญิง</string>
@@ -96,10 +101,34 @@
     <string name="tv_temp_daily"> 25 </string>
     <string name="tv_see_my_plant"> <u> ดูแปลงผักของฉัน </u> </string>
     <string name="user_plant_name"> ชื่อผักสวนครัว </string>
+    <string name="tv_see_all_plant">ผักที่ปลูก</string>
+    <string name="tv_see_all">ดูทั้งหมด</string>
+    <string name="no_plant">ว้า! ยังไม่ได้ปลูกอะไรเลย \n กด "+" เพื่อปลูกผัก</string>
+    <string name="tv_go_search">ข้อมูล &amp; สินค้าปลูกผักสวนครัว</string>
 
-    <string name="hint_search"> ค้นหาชื่อผัก หรือ ชื่อผลิตภัณฑ์ </string>
 
-    <string name="headbar_add_plant"> เพิ่มข้อมูลผักของคุณ </string>
+    <string name="headbar_plant"> ข้อมูลผัก </string>
+    <string name="tv_edit"> แก้ไข </string>
+    <string name="tv_delete">ลบ</string>
+    <string name="title_edit_plant"> แก้ไขข้อมูลผัก </string>
+
+    <string name="ic_back"> กลับ </string>
+    <string name="ic_add"> เพิ่ม </string>
+
+
+    <string name="hint_search"> ระบุชื่อผักหรือชื่อผลิตภัณฑ์ </string>
+    <string name="headbar_search"> ค้นหา</string>
+    <string name="tv_all">ทั้งหมด</string>
+    <string name="tv_ves">ผักสวนครัว</string>
+    <string name="tv_goods">สินค้า</string>
+    <string name="tv_search_ves_suggest">บทความการปลูกผักสวนครัว</string>
+    <string name="tv_search_product_suggest">สินค้าแนะนำ</string>
+
+
+    <string name="srch_info_vegan"> เทคนิคการปลูก\nผักสวนครัว </string>
+    <string name="srch_goods"> ผลิตภัณฑ์และอุปกรณ์ </string>
+
+    <string name="headbar_add_plant"> เพิ่มข้อมูลผัก </string>
     <string name="et_add_plant_name">ตั้งชื่อผักที่คุณปลูก</string>
     <string name="title_select_ves_type"> ชนิดของผัก </string>
     <string name="desc"> คำอธิบาย </string>
@@ -108,6 +137,7 @@
     <string name="lb_camera"> กล้อง </string>
     <string name="lb_gallery"> อัลบัมรูปภาพ </string>
 
+    <string name="title_all_plant"> ดูผักทั้งหมด </string>
 
 
     <!--String  ProfilePage-->
