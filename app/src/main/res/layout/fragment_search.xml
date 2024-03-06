@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.kmitl.mythesis.utils.HPTextRegular
+            <com.kmitl.mythesis.utils.HPTextSemiBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/headbar_search"
@@ -86,13 +86,15 @@
                 android:background="@drawable/bg_searchbox">
 
                 <com.kmitl.mythesis.utils.HPEditText
-                    android:id="@+id/search_field"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:id="@+id/et_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:background="@color/white"
                     android:ems="10"
                     android:hint="@string/hint_search"
+                    android:textColorHint="@color/greyNav"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="@dimen/search_box"
@@ -109,8 +111,11 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:id="@+id/btn_search"
                     android:layout_width="@dimen/ic_size20"
                     android:layout_height="@dimen/ic_size20"
+                    android:clickable="true"
+                    android:background="?selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_navbar_search"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="7dp" />
@@ -138,7 +143,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_filter_search_clicked"
+                        android:background="@drawable/bg_filter_clicked"
                         android:padding="@dimen/padding_card"
                         android:clickable="true"
                         android:orientation="horizontal"
@@ -151,7 +156,7 @@
                             android:src="@drawable/ic_farmer_circle">
                         </ImageView>
 
-                        <com.kmitl.mythesis.utils.HPTextRegular
+                        <com.kmitl.mythesis.utils.HPTextMedium
                             android:id="@+id/rd_all"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -163,7 +168,7 @@
                             android:textSize="@dimen/link_textSize"
                             android:textColor="@color/PrimaryText">
 
-                        </com.kmitl.mythesis.utils.HPTextRegular>
+                        </com.kmitl.mythesis.utils.HPTextMedium>
 
                     </LinearLayout>
 
@@ -171,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/filterSide"
-                        android:background="@drawable/btn_filter"
+                        android:background="@drawable/bg_filter"
                         android:padding="@dimen/padding_card"
                         android:clickable="true"
                         android:orientation="horizontal"
@@ -181,7 +186,7 @@
                             android:layout_width="@dimen/ic_size30"
                             android:layout_height="@dimen/ic_size30"
                             android:padding="@dimen/padding_card"
-                            android:src="@drawable/ic_tomato_circle">
+                            android:src="@drawable/emoji_tomato_circle">
                         </ImageView>
 
                         <com.kmitl.mythesis.utils.HPTextRegular
@@ -204,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/filterSide"
-                        android:background="@drawable/btn_filter"
+                        android:background="@drawable/bg_filter"
                         android:padding="@dimen/padding_card"
                         android:clickable="true"
                         android:orientation="horizontal"
@@ -297,9 +302,10 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_vegan_items"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center_horizontal">
+
                             </androidx.recyclerview.widget.RecyclerView>
 
                         </LinearLayout>

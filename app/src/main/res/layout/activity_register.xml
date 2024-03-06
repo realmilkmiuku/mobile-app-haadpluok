@@ -7,275 +7,350 @@
     android:background="@color/white"
     tools:context=".view.activities.RegisterActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_register_activity"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.kmitl.mythesis.utils.HPTextSemiBold
-            android:id="@+id/regis_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/marginTopHeadbar"
-            android:layout_marginEnd="20dp"
-            android:padding="@dimen/regis_title_padding">
-
-        </com.kmitl.mythesis.utils.HPTextSemiBold>
-
-        <!--
-        <LinearLayout
-            android:layout_width="395dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="@dimen/marginStartHeadbar"
-            android:layout_marginTop="@dimen/marginTopHeadbar"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/btn_back"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_back" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-        -->
-    </androidx.appcompat.widget.Toolbar>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_register_activity">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/img_logo"
-                android:src="@drawable/img_logo_green_text"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-
-            <com.kmitl.mythesis.utils.HPTextSemiBold
-                android:id="@+id/label_regis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="@string/label_regis"
-                android:textSize="@dimen/label_login_regis"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_logo"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fil_username"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="60dp"
-                android:hint="@string/hint_regis_username_text"
-                android:textColorHint="@color/HintSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="@dimen/shadow_toolbar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/label_regis">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <com.kmitl.mythesis.utils.HPEditText
-                    android:id="@+id/et_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/fill_auth_height"
-                    android:padding="@dimen/et_padding"
-                    android:paddingTop="@dimen/et_paddingTop"
-                    android:inputType="text"
-                    android:textSize="@dimen/et_auth"
-                    android:textColor="@color/PrimaryText"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="10"
-                    tools:text="haadpluok" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fil_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="60dp"
-                android:hint="@string/hint_email_id_text"
-                android:textColorHint="@color/HintSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fil_username">
+                android:layout_height="match_parent"
+                android:layout_weight="2">
 
-                <com.kmitl.mythesis.utils.HPEditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/fill_auth_height"
-                    android:padding="@dimen/et_padding"
-                    android:paddingTop="@dimen/et_paddingTop"
-                    android:inputType="textEmailAddress"
-                    android:textSize="@dimen/et_auth"
-                    android:textColor="@color/PrimaryText"
-                    tools:text="abc@gmail.com"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="30"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fil_regis_password"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="370dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/bg_regis"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"/>
+
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="60dp"
-                android:hint="@string/hint_regis_password_id_text"
-                android:textColorHint="@color/HintSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fil_email">
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
 
-                <com.kmitl.mythesis.utils.HPEditText
-                    android:id="@+id/et_num"
+                android:layout_weight="2">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/fill_auth_height"
-                    android:padding="@dimen/et_padding"
-                    android:paddingTop="@dimen/et_paddingTop"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/et_auth"
-                    android:textColor="@color/PrimaryText"
-                    tools:text="123456"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="12"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_card"
+                    android:gravity="center">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fil_confirm_password"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="60dp"
-                android:hint="@string/hint_regis_confirm_password_id_text"
-                android:textColorHint="@color/HintSecondaryText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fil_regis_password">
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:background="@drawable/img_logo" />
 
-                <com.kmitl.mythesis.utils.HPEditText
-                    android:id="@+id/et_confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/fill_auth_height"
-                    android:padding="@dimen/et_padding"
-                    android:paddingTop="@dimen/et_paddingTop"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/et_auth"
-                    android:textColor="@color/PrimaryText"
-                    tools:text="123456"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="12"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
 
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- row -->
             <LinearLayout
-                android:id="@+id/label_terms_and_condition_set"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fil_confirm_password">
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/et_cb_terms_and_condition"
-                    android:layout_width="25dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_height="wrap_content"
-                    tools:checked="false"/>
-
-                <com.kmitl.mythesis.utils.HPTextRegular
-                    android:id="@+id/label_terms_and_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="@string/label_terms_and_condition"
-                    android:textSize="@dimen/label_terms_and_condition" />
-
-            </LinearLayout>
-
-
-            <com.kmitl.mythesis.utils.HPButton
-                android:id="@+id/btn_regis"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginEnd="60dp"
-                android:padding="@dimen/btn_padding"
-                android:background="@drawable/button_bg"
-                android:foreground="?attr/selectableItemBackground"
-                android:text="@string/btnRegis_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/btn_textSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_terms_and_condition_set"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="450dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_logo">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_quarter"
+                    android:orientation="vertical">
 
-                <com.kmitl.mythesis.utils.HPTextRegular
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_have_acc_already"
-                    android:textSize="@dimen/link_textSize"/>
+                    <LinearLayout
+                        android:id="@+id/layout_half"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
 
-                <com.kmitl.mythesis.utils.HPTextBold
-                    android:id="@+id/hyperlink_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/clickAble_text_view_padding"
-                    android:text="@string/hyperlinkLogin_text"
-                    android:textSize="@dimen/link_textSize"
-                    android:textColor="@color/colorPrimary"
-                    android:background="?attr/selectableItemBackground"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.kmitl.mythesis.utils.HPTextSemiBold
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:elevation="@dimen/shadow_info"
+                                android:layout_marginStart="@dimen/ic_size30"
+                                android:text=""
+                                android:textSize="54dp"
+                                android:textColor="@color/white"
+                                android:gravity="center"/>
+
+                            <com.kmitl.mythesis.utils.HPTextMedium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="75dp"
+                                android:layout_marginStart="@dimen/ic_size30"
+                                android:text="@string/label_regis"
+                                android:textSize="28dp"
+                                android:textColor="@color/green4"
+                                android:gravity="center"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fil_username"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:boxStrokeColor="@color/green4"
+                            app:hintTextColor="@color/green4"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginEnd="60dp"
+                            android:hint="@string/hint_regis_username_text"
+                            android:textColorHint="@color/HintSecondaryText">
+
+                            <com.kmitl.mythesis.utils.HPEditText
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:id="@+id/et_username"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/fill_auth_height"
+                                android:padding="@dimen/et_padding"
+                                android:paddingTop="@dimen/et_paddingTop"
+                                android:inputType="text"
+                                android:textSize="@dimen/et_auth"
+                                android:textColor="@color/PrimaryText"
+                                app:counterEnabled="true"
+                                app:counterMaxLength="10"
+                                tools:text="haadpluok" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fil_email"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:boxStrokeColor="@color/green4"
+                            app:hintTextColor="@color/green4"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginTop="@dimen/padding_card"
+                            android:layout_marginEnd="60dp"
+                            android:hint="@string/hint_email_id_text"
+                            android:textColorHint="@color/HintSecondaryText">
+
+                            <com.kmitl.mythesis.utils.HPEditText
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:id="@+id/et_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/fill_auth_height"
+                                android:padding="@dimen/et_padding"
+                                android:paddingTop="@dimen/et_paddingTop"
+                                android:inputType="textEmailAddress"
+                                android:textSize="@dimen/et_auth"
+                                android:textColor="@color/PrimaryText"
+                                tools:text="abc@gmail.com"
+                                app:counterEnabled="true"
+                                app:counterMaxLength="30"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fil_regis_password"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:boxStrokeColor="@color/green4"
+                            app:hintTextColor="@color/green4"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginTop="@dimen/padding_card"
+                            android:layout_marginEnd="60dp"
+                            android:hint="@string/hint_regis_password_id_text"
+                            android:textColorHint="@color/HintSecondaryText">
+
+                            <com.kmitl.mythesis.utils.HPEditText
+                                android:textCursorDrawable="@drawable/cursor"
+                                android:id="@+id/et_num"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/fill_auth_height"
+                                android:padding="@dimen/et_padding"
+                                android:paddingTop="@dimen/et_paddingTop"
+                                android:inputType="textPassword"
+                                android:textSize="@dimen/et_auth"
+                                android:textColor="@color/PrimaryText"
+                                tools:text="123456"
+                                app:counterEnabled="true"
+                                app:counterMaxLength="12"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/fil_confirm_password"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:boxStrokeColor="@color/green4"
+                            app:hintTextColor="@color/green4"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginTop="@dimen/padding_card"
+                            android:layout_marginEnd="60dp"
+                            android:hint="@string/hint_regis_confirm_password_id_text"
+                            android:textColorHint="@color/HintSecondaryText">
+
+                            <com.kmitl.mythesis.utils.HPEditText
+                                android:textCursorDrawable="@drawable/cursor"
+
+                                android:id="@+id/et_confirm_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/fill_auth_height"
+                                android:padding="@dimen/et_padding"
+                                android:paddingTop="@dimen/et_paddingTop"
+                                android:inputType="textPassword"
+                                android:textSize="@dimen/et_auth"
+                                android:textColor="@color/PrimaryText"
+                                tools:text="123456"
+                                app:counterEnabled="true"
+                                app:counterMaxLength="12"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/label_terms_and_condition_set"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:columnCount="2"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <androidx.appcompat.widget.AppCompatCheckBox
+                                android:id="@+id/et_cb_terms_and_condition"
+                                app:buttonTint="@color/darkGreyText"
+                                android:layout_width="35dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="wrap_content"
+                                tools:checked="false"/>
+
+                            <com.kmitl.mythesis.utils.HPTextRegular
+                                android:id="@+id/label_terms_and_condition"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_terms_and_condition"
+                                android:textSize="@dimen/subcontent_textSize" />
+
+                        </LinearLayout>
+
+                        <com.kmitl.mythesis.utils.HPButton
+                            android:id="@+id/btn_regis"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ic_size50"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginEnd="60dp"
+                            android:padding="@dimen/btn_padding"
+                            android:background="@drawable/button_bg"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:text="@string/btnRegis_text"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/content_textSize" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dip"
+                            android:layout_marginBottom="@dimen/margin20"
+                            android:layout_weight="1"
+                            android:gravity="center|bottom"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_marginBottom="@dimen/padding_card"
+                                    android:orientation="horizontal"
+                                    >
+
+                                    <com.kmitl.mythesis.utils.HPTextRegular
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/PrimaryText"
+                                        android:text="@string/label_have_acc_already"
+                                        android:textSize="@dimen/link_textSize"/>
+
+                                    <com.kmitl.mythesis.utils.HPTextBold
+                                        android:id="@+id/hyperlink_login"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="@dimen/clickAble_text_view_padding"
+                                        android:text="@string/hyperlinkLogin_text"
+                                        android:textSize="@dimen/subcontent_textSize"
+                                        android:textColor="@color/colorPrimary"
+                                        android:background="?attr/selectableItemBackground"
+                                        />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+
+
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

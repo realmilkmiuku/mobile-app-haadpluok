@@ -86,6 +86,7 @@ tools:context=".view.fragments.SearchVeganFragment">
             android:background="@drawable/bg_searchbox">
 
             <com.kmitl.mythesis.utils.HPEditText
+                android:textCursorDrawable="@drawable/cursor"
                 android:id="@+id/search_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,6 +94,7 @@ tools:context=".view.fragments.SearchVeganFragment">
                 android:background="@color/white"
                 android:ems="10"
                 android:hint="@string/hint_search"
+                android:textColorHint="@color/greyNav"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 android:textSize="@dimen/search_box"

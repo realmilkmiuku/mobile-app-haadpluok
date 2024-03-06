@@ -1,194 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
+    android:id="@+id/fragmentTask"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.fragments.TaskFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update Task fragment layout -->
+
+    <!-- shadow head box-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ic_size50">
+
+        <View
+            android:id="@+id/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ic_size50"
+            android:background="@drawable/shadow_taskbox"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/bar_marginTop"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round_rotate"
+            android:elevation="@dimen/margin10"
             android:orientation="vertical">
 
+            <!-- Tool bar -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:rowCount="1"
-                android:columnCount="3"
-                android:layout_marginStart="@dimen/margin20"
-                android:layout_marginEnd="@dimen/margin20"
                 >
 
-                <com.kmitl.mythesis.utils.HPTextSemiBold
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-
-                    android:text="@string/title_task"
-                    android:textSize="@dimen/titlebar_textSize"
-                    android:textColor="@color/black"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/ic_add"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_add"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fragment_marginTopDown"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:orientation="horizontal"
-                android:rowCount="1"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:rowCount="4"
-                    android:orientation="vertical">
-
-                    <com.kmitl.mythesis.utils.HPTextSemiBold
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Task_name"
-                        android:textSize="@dimen/title_textSize"
-                        android:textColor="@android:color/black"/>
-
-                    <com.kmitl.mythesis.utils.HPTextRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="User_ves_name"
-                        android:textSize="@dimen/content_textSize"
-                        android:textColor="@color/black"/>
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:elevation="@dimen/shadow_toolbar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.kmitl.mythesis.utils.HPTextRegular
+                        <com.kmitl.mythesis.utils.HPTextSemiBold
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
-                            android:text="Task_time"
-                            android:textSize="@dimen/content_textSize"
-                            android:textColor="@color/black"/>
+                            android:text="@string/title_task"
+                            android:textSize="@dimen/titlebar_textSize"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center_vertical" />
 
                         <View
-                            android:layout_marginTop="8dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
 
-                            android:layout_width="0.75dp"
-                            android:layout_height="12dp"
-                            android:background="@android:color/darker_gray"/>
-
-                        <com.kmitl.mythesis.utils.HPButton
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_margin="2dp"
+                        <ImageView
+                            android:id="@+id/ic_add"
+                            android:layout_width="@dimen/ic_size30"
+                            android:layout_height="@dimen/ic_size30"
                             android:layout_gravity="center"
-                            android:background="@drawable/bg_circle"
-                            style="?android:attr/borderlessButtonStyle"
-                            android:gravity="center"
-                            android:minHeight="0dp"
-                            android:minWidth="0dp"
-                            android:text="ศ."
-                            android:textSize="9dp"
-                            android:textColor="@color/white"
+                            android:layout_marginEnd="@dimen/margin10"
+                            android:clickable="true"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_add"
                             />
 
                     </LinearLayout>
+                </androidx.appcompat.widget.Toolbar>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:background="@drawable/bg_task_type"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:paddingHorizontal="5dp"
-                        android:paddingTop="2dp">
-
-                        <com.kmitl.mythesis.utils.HPTextRegular
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Task_type"
-                            android:textColor="@color/black"
-                            android:textSize="10dp"
-                            android:paddingTop="1dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <RadioGroup
-                    android:id="@+id/rg_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|end">
-
-                    <com.kmitl.mythesis.utils.HPRadioButton
-                        android:id="@+id/rd_task_check"
-                        android:layout_width="25dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:checked="false"
-                        android:button="@drawable/custom_radiobutton" />
-
-                </RadioGroup>
 
             </LinearLayout>
 
-            <!-- boundary line between task -->
-            <View
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:layout_width="wrap_content"
-                android:layout_height="0.75dp"
-                android:background="@color/grey"/>
+            <!-- Topic To do list -->
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin20"
+                android:orientation="horizontal"
+                >
+
+                <com.kmitl.mythesis.utils.HPTextMedium
+                    android:id="@+id/tv_dayno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="21sp"
+                    android:textColor="@color/white">
+                </com.kmitl.mythesis.utils.HPTextMedium>
+
+                <com.kmitl.mythesis.utils.HPTextMedium
+                    android:id="@+id/tv_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:textSize="21sp"
+                    android:textColor="@color/white">
+                </com.kmitl.mythesis.utils.HPTextMedium>
+
+                <com.kmitl.mythesis.utils.HPTextMedium
+                    android:id="@+id/tv_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:textSize="21sp"
+                    android:textColor="@color/white">
+                </com.kmitl.mythesis.utils.HPTextMedium>
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:layout_marginBottom="?attr/actionBarSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kmitl.mythesis.utils.HPTextRegular
+                    android:id="@+id/tv_no_utask"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="@string/no_utask"
+                    android:textSize="@dimen/content_textSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                </com.kmitl.mythesis.utils.HPTextRegular>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_utask_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_gtask_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
     </LinearLayout>
+
 
 </FrameLayout>

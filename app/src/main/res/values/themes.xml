@@ -14,7 +14,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
+        <item name="colorOnBackground">@color/red_gg</item>
+
     </style>
+
 
     <style name="Theme.MyThesis.NoActionBar">
         <item name="windowNoTitle">true</item>
