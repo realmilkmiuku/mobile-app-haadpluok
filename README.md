@@ -29,5 +29,5 @@ Sometimes, how to grow home-grown vegetables is difficult for beginners. This mo
 - Lesson: commit and push every single time. no excuse.
 
 ## Reference
-- [Haadphuok - presentation (Thai version)](https://milkmiukuportfolio.web.app/haadphuok-ref.html)
-- [Download Presentation](./PatcharathanS_Haadpluok_2021.pdf)
+- [Haadpluok presentation .pptx](https://milkmiukuportfolio.web.app/haadphuok-ref.html)
+- [Download Haadpluok presentation .pdf](./PatcharathanS_Haadpluok_2021.pdf)
